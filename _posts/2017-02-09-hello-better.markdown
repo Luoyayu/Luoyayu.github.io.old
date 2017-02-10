@@ -15,7 +15,6 @@ tags:
 #### 正文
 youtube播放器测试：
 
-{% youtube F_0yfvm0UoU %}
 
 
 Jekyll 主题 fork 了 *Clean Blog*，标签支持来自*Hux* 支持

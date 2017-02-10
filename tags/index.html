@@ -10,7 +10,7 @@
     <meta name="keywords"  content=" 博客, 个人网站, 互联网">
     <meta name="theme-color" content="#000000">
     
-    <title>博客 | Luoyayu</title>
+    <title>Tags - 博客 | Luoyayu</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/">
+    <link rel="canonical" href="http://localhost:4000/tags/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -173,14 +173,13 @@
 
 
     <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+<header class="intro-header" style="background-image: url('/img/tag-bg.jpg')">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>MyBlog</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">小世界，大梦想</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading" id="tag-heading">
+                    <h1>Tags</h1>
+                    <span class="subheading">Keep hungry, Keep foolish</span>
                 </div>
             </div>
         </div>
@@ -190,245 +189,69 @@
 <!-- Main Content -->
 <div class="container">
 	<div class="row">
-        
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <!-- 标签云 -->
+			<div id='tag_cloud' class="tags">
+				
+				<a href="#生活" title="生活" rel="2">生活</a>
+				
+			</div>
 
-<!-- USE SIDEBAR -->
-    <!-- PostList Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                postlist-container
-            ">
-    			
-<div class="post-preview">
-    <a href="/2017/02/10/hello-better/">
-        <h2 class="post-title">
-            Hello 2017
-        </h2>
-        
-        <h3 class="post-subtitle">
-             Hello World, Hello Blog
-        </h3>
-        
-        <div class="post-content-preview">
-            
-  “Yeah It’s on. ”
+            <!--<blockquote class="tag-comments">
+                标签命名规范：
+                    <li>行业观察、职位、公司优先使用中文</li>
+                    <li>外国产品、术语优先使用英文</li>
+            </blockquote>-->
 
+            <!-- 标签列表 -->
+			
+			<div class="one-tag-list">
+			  	<span class="fa fa-tag listing-seperator" id="生活">
+                    <span class="tag-text">生活</span>
+                </span>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2017-02-10">2017-02-10</time>
+				  <a href="/2017/02/10/hello-better/" title="Hello 2017">Hello 2017</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2017/02/10/hello-better/">
+				        <h2 class="post-title">
+                            Hello 2017
+				        </h2>
+				        
+				        <h3 class="post-subtitle">
+				             Hello World, Hello Blog
+				        </h3>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2017-02-10</p> -->
+				</div>
+				<hr>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2017-02-04">2017-02-04</time>
+				  <a href="/2017/02/04/fifth-com/" title="菜鸟先飞——第五场">菜鸟先飞——第五场</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2017/02/04/fifth-com/">
+				        <h2 class="post-title">
+                            菜鸟先飞——第五场
+				        </h2>
+				        
+				        <h3 class="post-subtitle">
+				            ACM 队赛
+				        </h3>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2017-02-04</p> -->
+				</div>
+				<hr>
+				
+			</div>
+			
 
-正文
-youtube播放器测试：
-
-
-
-Jekyll 主题 fork 了 Clean Blog，标签支持来自Hux 支持
-
-今后会添加web slider #iframe
-
-Theme 的 CSS 是基于 Bootstrap 定制的，
-
-中文字体的渲染，fork 了 Type is Beautiful 的 font CSS，调整了字号，适配了 Wi...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Luoyayu on February 10, 2017
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2017/02/04/fifth-com/">
-        <h2 class="post-title">
-            菜鸟先飞——第五场
-        </h2>
-        
-        <h3 class="post-subtitle">
-            ACM 队赛
-        </h3>
-        
-        <div class="post-content-preview">
-            1.Problem A
--Uppercase
- 字符串水题
-
-2.Problem B
--XRT in FSK（天平称重）
-
-  Problem Description
-
-
-由于学校的实习安排，XRT被安排去了烟台FSK当质检工。每次XRT都要检查n个小球，已知这n个小球里面有一个是比较轻的，
-     其余的n-1个小球重量都相同。XRT有一个天平，每次他可以把若干个球放在左边，若干个球放在...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Luoyayu on February 4, 2017
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2017/02/10/a-draft-post/">
-        <h2 class="post-title">
-            A Draft Post
-        </h2>
-        
-        <div class="post-content-preview">
-            #some tips
-
-跳转实现———[描述](#***)
-&lt;p id = "***"&gt; &lt;/p&gt;
-
-网站跳转———[描述](https:\\***\***\)
-
-&lt;i&gt;斜体&lt;/i&gt;
-&lt;strong&gt;加强&lt;/strong&gt;
-
-jekyll serve --watch --drafts
-
-&lt;iframe width=...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by MyBlog on February 10, 2017
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-
-<body>
-<!-- xingzhi weather -->
-
-     <script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.thinkpage.cn/widget/chameleon.js"))</script>
-<script>tpwidget("init", {
-    "flavor": "bubble",
-    "location": "WX4FBXXFKE4F",
-    "geolocation": "enabled",
-    "position": "top-left",
-    "margin": "80px 15px",
-    "language": "zh-chs",
-    "unit": "c",
-    "theme": "chameleon",
-    "uid": "U087D6D9A8",
-    "hash": "e51cadc19475b2015641b112f7e3f1ba"
-});
-tpwidget("show");</script>
-
-     <!-- Xingzhi weather End -->
-
-     </body>
-
-    		</div>
-    <!-- Sidebar Container -->
-            <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-                <!-- Featured Tags -->
-                
-                <section>
-                    <hr class="hidden-sm hidden-xs">
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                        
-                            
-                                <a href="/tags/#生活" title="生活" rel="2">
-                                    生活
-                                </a>
-                            
-                        
-                    </div>
-                </section>
-                
-
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-                        
-                            <img src="/img/avatar-yurisa.jpg" />
-                        
-                        
-                            <p>我有我的世界，<br>我有我的梦想</p>
-                        
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            <li>
-                                <a href="https://twitter.com/洛牙鱼">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://www.zhihu.com/people/Luoyayv">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="http://weibo.com/洛牙鱼">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://www.facebook.com/Luoyayu">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/Luoyayu">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                        </ul>
-                    </div>
-                </section>
-                <!-- Friends Blog -->
-                
-                <hr>
-                <h5>FRIENDS</h5>
-                <ul class="list-inline">
-                    
-                        <li><a href="https://www.google.com/ncr">google</a></li>
-                    
-                        <li><a href="https://github.com/">github</a></li>
-                    
-                </ul>
-                
-    		</div>
-        
+		</div>
 	</div>
 </div>
 

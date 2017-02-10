@@ -10,7 +10,7 @@
     <meta name="keywords"  content=" 博客, 个人网站, 互联网">
     <meta name="theme-color" content="#000000">
     
-    <title>博客 | Luoyayu</title>
+    <title>About - 博客 | Luoyayu</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/">
+    <link rel="canonical" href="http://localhost:4000/about/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -173,14 +173,14 @@
 
 
     <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+<header class="intro-header" style="background-image: url('/img/about-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
                 <div class="site-heading">
-                    <h1>MyBlog</h1>
+                    <h1>About</h1>
                     <!--<hr class="small">-->
-                    <span class="subheading">小世界，大梦想</span>
+                    <span class="subheading">Hey, this is Luoyayu.</span>
                 </div>
             </div>
         </div>
@@ -201,126 +201,117 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2017/02/10/hello-better/">
-        <h2 class="post-title">
-            Hello 2017
-        </h2>
-        
-        <h3 class="post-subtitle">
-             Hello World, Hello Blog
-        </h3>
-        
-        <div class="post-content-preview">
-            
-  “Yeah It’s on. ”
+    			<!-- Language Selector -->
+<select class="sel-lang" onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
+    <option value="0" selected> 中文 Chinese </option>
+    <option value="1"> 英文 English </option>
+</select>
 
+<!-- Chinese Version -->
+<div class="zh post-container">
 
-正文
-youtube播放器测试：
+    <!--copied from markdown -->
+    <blockquote><p>写写代码，玩玩硬件，<br>
+    离开世界之前，一切都是过程</p></blockquote>
 
+    <h5>欢迎访问：</h5>
 
-
-Jekyll 主题 fork 了 Clean Blog，标签支持来自Hux 支持
-
-今后会添加web slider #iframe
-
-Theme 的 CSS 是基于 Bootstrap 定制的，
-
-中文字体的渲染，fork 了 Type is Beautiful 的 font CSS，调整了字号，适配了 Wi...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Luoyayu on February 10, 2017
-    </p>
+    <ul>
+    <li><a href="http://acm.hdu.edu.cn/">HDU OJ</a></li>
+    <li><a href="http://va.onlinejudge.org/">UVa OJ</a></li>
+    </ul>
 </div>
-<hr>
 
-<div class="post-preview">
-    <a href="/2017/02/04/fifth-com/">
-        <h2 class="post-title">
-            菜鸟先飞——第五场
-        </h2>
-        
-        <h3 class="post-subtitle">
-            ACM 队赛
-        </h3>
-        
-        <div class="post-content-preview">
-            1.Problem A
--Uppercase
- 字符串水题
+<!-- English Version -->
+<div class="en post-container">
+    <blockquote><p>Yet another Web Developer. <br>
+    Yet another Life-long Designer.</p></blockquote>
 
-2.Problem B
--XRT in FSK（天平称重）
+    <h5>Welcome:</h5>
 
-  Problem Description
-
-
-由于学校的实习安排，XRT被安排去了烟台FSK当质检工。每次XRT都要检查n个小球，已知这n个小球里面有一个是比较轻的，
-     其余的n-1个小球重量都相同。XRT有一个天平，每次他可以把若干个球放在左边，若干个球放在...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Luoyayu on February 4, 2017
-    </p>
+     <ul>
+    <li><a href="http://acm.hdu.edu.cn/">HDU OJ</a></li>
+    <li><a href="http://va.onlinejudge.org/">UVa OJ</a></li>
+    </ul>
 </div>
-<hr>
 
-<div class="post-preview">
-    <a href="/2017/02/10/a-draft-post/">
-        <h2 class="post-title">
-            A Draft Post
-        </h2>
-        
-        <div class="post-content-preview">
-            #some tips
+<!-- Handle Language Change -->
+<script type="text/javascript">
+    // get nodes
+    var $zh = document.querySelector(".zh");
+    var $en = document.querySelector(".en");
+    var $select = document.querySelector("select");
 
-跳转实现———[描述](#***)
-&lt;p id = "***"&gt; &lt;/p&gt;
+    // bind hashchange event
+    window.addEventListener('hashchange', _render);
 
-网站跳转———[描述](https:\\***\***\)
+    // handle render
+    function _render(){
+        var _hash = window.location.hash;
+        // en
+        if(_hash == "#en"){
+            $select.selectedIndex = 1;
+            $en.style.display = "block";
+            $zh.style.display = "none";
+        // zh by default
+        }else{
+            // not trigger onChange, otherwise cause a loop call.
+            $select.selectedIndex = 0;
+            $zh.style.display = "block";
+            $en.style.display = "none";
+        }
+    }
 
-&lt;i&gt;斜体&lt;/i&gt;
-&lt;strong&gt;加强&lt;/strong&gt;
+    // handle select change
+    function onLanChange(index){
+        if(index == 0){
+            window.location.hash = "#zh"
+        }else{
+            window.location.hash = "#en"
+        }
+    }
 
-jekyll serve --watch --drafts
+    // init
+    _render();
+</script>
 
-&lt;iframe width=...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by MyBlog on February 10, 2017
-    </p>
+
+
+
+<!-- 多说评论框 start -->
+<div class="comment">
+    <!-- This id is used for indexing my loss comments forcedly -->
+    <div class="ds-thread"
+    
+        data-thread-id="6382856734527980290"
+    
+
+    data-title="About"
+    data-url="http://localhost:4000/about/"></div>
 </div>
-<hr>
+<!-- 多说评论框 end -->
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User hacking by Hux
+    var _user = 'luoyayu01';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
 
 
-<!-- Pager -->
 
 
-<body>
-<!-- xingzhi weather -->
-
-     <script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.thinkpage.cn/widget/chameleon.js"))</script>
-<script>tpwidget("init", {
-    "flavor": "bubble",
-    "location": "WX4FBXXFKE4F",
-    "geolocation": "enabled",
-    "position": "top-left",
-    "margin": "80px 15px",
-    "language": "zh-chs",
-    "unit": "c",
-    "theme": "chameleon",
-    "uid": "U087D6D9A8",
-    "hash": "e51cadc19475b2015641b112f7e3f1ba"
-});
-tpwidget("show");</script>
-
-     <!-- Xingzhi weather End -->
-
-     </body>
 
     		</div>
     <!-- Sidebar Container -->

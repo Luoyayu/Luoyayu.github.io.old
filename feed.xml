@@ -5,8 +5,8 @@
     <description>个人博客</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 10 Feb 2017 17:08:38 +0800</pubDate>
-    <lastBuildDate>Fri, 10 Feb 2017 17:08:38 +0800</lastBuildDate>
+    <pubDate>Fri, 10 Feb 2017 19:55:12 +0800</pubDate>
+    <lastBuildDate>Fri, 10 Feb 2017 19:55:12 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
     
       <item>
@@ -23,7 +23,7 @@
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve --watch --drafts&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;iframe width=&quot;500&quot; height=&quot;500&quot; src=&quot;http://www.youtube.com/embed/oHg5SJYRHA0?color=white&amp;amp;theme=light&quot;&amp;gt;&amp;lt;/iframe&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;iframe width=&quot;500&quot; height=&quot;500&quot; src=&quot;https://www.youtube.com/embed/oHg5SJYRHA0?color=white&amp;amp;theme=light&quot;&amp;gt;&amp;lt;/iframe&amp;gt;&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cd C:\Users\gavin\Desktop\Luoyayu.github.io&lt;/code&gt;&lt;/p&gt;
 
@@ -74,7 +74,7 @@
 &lt;h4 id=&quot;正文&quot;&gt;正文&lt;/h4&gt;
 &lt;p&gt;youtube播放器测试：&lt;/p&gt;
 
-&lt;iframe width=&quot;560&quot; height=&quot;420&quot; src=&quot;http://www.youtube.com/embed/sD0NjbwqlYw?color=white&amp;amp;theme=light&quot;&gt;&lt;/iframe&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;420&quot; src=&quot;https://www.youtube.com/embed/sD0NjbwqlYw?color=white&amp;amp;theme=light&quot;&gt;&lt;/iframe&gt;
 
 &lt;p&gt;Jekyll 主题 fork 了 &lt;em&gt;Clean Blog&lt;/em&gt;，标签支持来自&lt;em&gt;Hux&lt;/em&gt; 支持&lt;/p&gt;
 

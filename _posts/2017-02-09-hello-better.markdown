@@ -2,7 +2,7 @@
 layout:     post
 title:      "Hello 2017"
 subtitle:   " Hello World, Hello Blog"
-date:        2017-02-8 19:13:00
+date:        2017-02-09 19:13:00
 author:     "Luoyayu"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
@@ -13,6 +13,8 @@ tags:
 > “Yeah It's on. ”
 
 #### 正文
+youtube播放器测试：
+{% youtube sD0NjbwqlYw %}
 
 Jekyll 主题 fork 了 *Clean Blog*，标签支持来自*Hux* 支持
 
@@ -21,6 +23,8 @@ Jekyll 主题 fork 了 *Clean Blog*，标签支持来自*Hux* 支持
 Theme 的 CSS 是基于 Bootstrap 定制的，
 
 中文字体的渲染，fork 了 [Type is Beautiful](http://www.typeisbeautiful.com/) 的 `font` CSS，调整了字号，适配了 Win 的渣渲染。
+
+C++代码测试：
 
 {% highlight cpp %}
 struct matrix

@@ -1,0 +1,231 @@
+---
+layout:     post
+title:      "菜鸟先飞——第五场"
+subtitle:   "ACM 队赛"
+date:        2017-02-03 19:13:00
+author:     "Luoyayu"
+header-img: "img/post-bg-js-module.jpg"
+catalog: true
+tags:
+    - 生活
+---
+
+###   1.Problem A  
+  -Uppercase
+ 字符串水题
+
+###   2.Problem B    
+   -<strong>XRT in FSK（天平称重）</strong>   
+>   Problem Description       
+     
+由于学校的实习安排，XRT被安排去了烟台FSK当质检工。每次XRT都要检查n个小球，已知这n个小球里面有一个是比较轻的，
+     其余的n-1个小球重量都相同。XRT有一个天平，每次他可以把若干个球放在左边，若干个球放在右边，
+     然后得到结果：左边重，右边重和平衡。告诉他,最少测量多少次能保证把比较轻的小球找出来吗?  
+
+>  Input     
+输入包含多组数据 对于每组数据，输入一个正整数 $$n（1≤n≤10^8）$$  
+
+
+>   Output     
+每组样例输出一行,表示测量的最少次数.  
+
+>  Sample Input    
+>1  
+10  
+
+>   Sample Output    
+>0    
+3
+
+## *题解*
+天平的状态无外乎只有三种左倾，右倾，平衡。而我们采取最少称量的方式是一堆放左变，一堆放右边，还有一堆放在旁边（如果可能且需要（n为偶数）的话）。
+        通过模拟7或8个球，可以看出，应该在球的总数中尽可能选完3的倍数个，例如8个球，可以选3个放左，3个放右，还有2个放一旁，例如16个球,6个放左边，6个放右边，4个放一旁。如果状态为平衡，则需要考虑放在一旁的，但是为了保证可以比较出较轻的，不平衡状态下的再称重次数一定比平衡状态下的多。
+       由此可见，问题归结到3的幂次问题。分界点为1，3，9，27，81······归纳得结论：n个球，最少保证的情况下，需要称（$$\quad \sqrt[3]{n+k}∈Z$$）次。代码如下：  
+
+```cpp 
+#include<cstdio>
+#include<cstring>
+#include<algorithm>
+#include<cctype>
+using namespace std;
+int a[1005]={0};
+int t,n;
+void init()
+{
+    int f=1;
+    while(f<100000005)
+    {
+        f=1;
+        for(int i=1;i<=t;i++)
+            f*=3;
+        a[t++]=f;
+    }
+}
+int main()
+{ 
+    init();//打ans表
+    while(scanf("%d",&n)!=EOF)
+    {
+        t=1;
+        while(t++)
+        {
+            if(n<=1) 
+            {
+                printf("0\n");
+                break;
+            }
+            else if(a[t]>=n) 
+            {
+                printf("%d\n",t);
+                break;
+            }
+        }
+    }
+    return 0;
+}
+
+```
+
+###   3.Problem D
+  -<strong>The sad match I</strong>
+>   Problem Description   
+    集训队又要选拔了，今年为了壮大集训队规模，学校打算出很多很多场选拔赛，第i场的持续时间是[ai,bi)。每一场选拔赛都必须至少有一个老队员在现场组织。很遗憾的是，选拔赛可能重叠，比如说可能有一场比赛在[4,9)举行，另一场在[6,10)举行，那么同学们只能选择参加其中一场了。当然，我绝不会关心，你能不能参加的，我关心的是我到底要不要被迫去现场组织比赛。只要两场比赛时间不冲突，他们就可以由同一个老队员组织。
+现在给出所有的比赛时间，问最少需要多少个老队员作组织工作。
+例如在$$[0, 5), [2, 10), [8,9)$$各有一场比赛，那么可以让一个老队员去第一、三场，另一个老队员去第二场，这样只需要两个老队员就够了。  
+
+>  Input    
+输入的第一行包含一个整数T，表示T个测试样例。 每一个测试样例的第一行包含一个正整数n($$n≤10^5$$ )，表示有n场选拔赛。 接下来的n行有每行有2个数，ai和bi, ($$0≤ai < bi ≤10^5$$)。
+
+>   Output     
+对于每组数据，输出至少需要的老队员的人数 
+
+>   Sample Input   
+>3  
+2  
+4 9  
+6 10  
+1    
+4 9  
+4  
+1 3  
+2 3  
+4 9  
+6 10 
+
+>  Sample Output    
+>0   
+3
+
+## *题解*
+第一次听说差分序列，我是贪心过。
+
+
+### Problem F 
+ -<strong>Count the continent</strong>
+>   Problem Description   
+    给出一个二维矩阵，表示一张地图，0表示海洋,1表示陆地，若一块陆地的坐标为(r,c)，
+    如果另一块陆地为 (r-1,c) 或 (r+1,c) 或 (r,c-1) 或 (r,c+1)，
+    则我们认为这两块陆地相邻，所有相邻的陆地我们称之为一个大陆，求大陆的数量。
+
+>   Input   
+输入包含多组数据
+对于每组数据，输入第一行为一个正整数N (N≤10 )，然后给出一个$$N * N$$ 的矩阵
+接下来的N行每行N个元素以空格分开，表示该格是陆地还是海洋。
+
+> Output     
+对于每组数据，输出大陆的数量。
+
+>   Sample Input   
+4
+1 1 0 0
+1 1 0 0
+0 0 1 0
+0 0 0 0
+3
+0 1 0
+0 1 0
+0 1 0
+3
+0 0 0
+0 1 0
+0 0 0
+
+>   Sample Output   
+2
+1
+1
+
+## *题解*
+
+>   Problem Description   
+已知a, n，求，求$$ \sum_{i=1}^{n}(a^{n-i}(a-1)^{i-1})mod 1000000007  $$
+
+>   Input   
+输入第一行是一个正整数T($$T≤1000$$)，表示有T组数据；每组数据包含两个正整数a, n($$a,n≤10^9$$ )。
+
+>   Output   
+对于每组数据，输出上式的结果。
+
+> Sample Input   
+3
+1 1
+2 2
+5 10
+
+>   Sample Output   
+1
+3
+8717049
+
+##   Problem
+   -<strong>I Zeros<strong>   
+>   Problem Description   
+给出n，计算n！末尾0的个数
+
+>   Input   
+输入包含多组数据
+每组数据包含一个正整数n ($$n≤10^9$$ )
+
+>   Output   
+对于每组数据，输出n！末尾0的个数
+
+>   Sample Input      
+3
+5
+100
+1024
+
+>   Sample Output   
+0
+1
+24
+253
+
+## *题解*
+来自《编程之美》（2.2不要被阶乘吓到）的思想
+从“哪些数相乘等于10”考虑，if$$N!=K*10^M$$且$$K%10!=0$$,then$$N!$$末尾就有M个0。
+
+```cpp
+#include<cstdio>
+#include<cstring>
+#include<algorithm>
+#include<cctype>
+using namespace std;
+int Zero(int n)  
+{  
+    __int64 num = 0;  
+    for(int i=5; i<=n; i*=5)  
+        num += n/i;   
+    return num;  
+}  
+int main()
+{
+    __int64 n;
+    while(scanf("%d",&n)!=EOF)
+        printf("%d\n",Zero(n));
+    return 0;
+}
+
+```
+
+

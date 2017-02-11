@@ -1,0 +1,10 @@
+# robots.txt generated at http://www.atool.org/robots.txt.php
+User-agent: Googlebot
+Disallow: 
+User-agent: baiduspider
+Disallow: 
+User-agent: *
+Disallow: 
+Disallow: /img
+Disallow: /portfolio/images
+Sitemap: https://luoyayu.github.io/sitemap.xml

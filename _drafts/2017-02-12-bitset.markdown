@@ -1,0 +1,102 @@
+---
+layout: post 
+
+title: "C++ bitset类的使用与简介 "
+
+author:    "Luoyayu|@枯龙吟"
+
+header-img: "img绝对路径"
+
+date: 2017-02-12 22:07:35
+
+catalog: true
+
+tags:
+    -C++
+
+---
+
+# 声明
+>转载自https://briskblog.eu.org @枯龙吟 
+内容有修改。
+
+# 简介
+
+有些程序要处理二进制位的有序集，每个位可能包含的是0（关）或1（开）的值。
+`C++ std::bitset`, 是C++中模拟bool数组的一个类，存放于`<bitset>` 库；
+
+# bitset的定义和初始化
+
+表3-6列出了bitset的构造函数。
+与vector不一样的是bitset类型对象的区别仅在其长度而不在其类型。
+在定义bitset时，要用常量表达式明确bitset含有多少位：
+`bitset<32> Flag; `//32位，全为0。
+each element occupies only one bit；
+default constructor: The object is initialized with zeros.
+这条语句把Flag定义为含有32个位的bitset对象。
+只能按位置来访问它们。位集合的位置编号从0开始
+以0位开始的位串是低阶位(low-order bit)，以31位结束的位串是高阶位(high-order bit)。
+
+>表3-6  初始化bitset对象的方法
+
+`bitset<n> b; `               |      b有n位，每位都为0                         |  
+|------------------------|------------------------------------------|
+`bitset<n> b(u); `           |b是unsigned long型u的一个副本          |
+`bitset<n> b(s);   `         |     b是string对象s中含有的位串的副本   |
+`bitset<n> b(s, pos, n); `|  b是s中从位置pos开始的n个位的副本    |
+
+# 1. 用unsigned值初始化bitset对象
+
+用unsigned long初始定义一个`bitset`，该值将转化为二进制的位模式。
+而bitset对象中的位集作为这种位模式的副本。如果bitset类型长度大于unsigned long值的二进制位数，
+则其余的高阶位置为0；如果bitet类型长度小于unsigned long值的二进制位数，则只使用unsigned值中的低阶位，
+超过bitet类型长度的高阶位将被丢弃。
+
+在32位unsigned long的机器上，十六进制值0xffff表示为二进制位就是十六个1和十六个0（每个0xf可表示为1111）。
+可以用0xffff初始化bitset对象：
+
+// bitvec1 is smaller than the initializer
+
+`bitset<16> bitvec1(0xffff);  `        // bits 0 ... 15 are set to 1
+
+// bitvec2 same size as initializer
+
+`bitset<32> bitvec2(0xffff);  `        // bits 0 ... 15 are set to 1; 16 ... 31 are 0
+
+// on a 32-bit machine, bits 0 to 31 initialized from 0xffff
+
+`bitset<128> bitvec3(0xffff);`         // bits 32 through 127 initialized to zero
+
+上面的三个例子中，0到15位都置为1。由于bitvec1位数少于unsigned long的位数，
+因此bitvec1的初始值的高阶位被丢弃。bitvec2和unsigned long长度相同，
+因此所有位正好放置了初始值。bitvec3长度大于32，31位以上的高阶位就被置为0。
+
+# 2. 用string对象初始化bitset对象
+
+当用string对象初始化bitset对象时，string对象直接表示为位模式。
+从string对象读入位集的顺序是从右向左：
+`string strval("1100");`
+`bitset<32> bitvec4(strval);`
+bitvec4的位模式中第2和3的位置为1，其余位置都为0。
+
+如果string对象的字符个数小于bitset类型的长度，则高阶位将置为0。
+
+# 表3-7  bitset操作
+
+`b.any()`      |     b中是否存在置为1的二进制位？|  
+|------------------------|--------------------------|
+`b.none()`   |    b中不存在置为1的二进制位吗？|
+`b.count() ` |    b中置为1的二进制位的个数|
+`b.size() `    |        b中二进制位的个数|
+`b[pos]  `  |   访问b中在pos处的二进制位|
+`b.test(pos) `  |    b中在pos处的二进制位是否为1？|
+`b.set()   `     |       把b中所有二进制位都置为1|
+`b.set(pos)  `  |       把b中在pos处的二进制位置为1|
+`b.reset() `      |         把b中所有二进制位都置为0|
+`b.reset(pos)  `    |          把b中在pos处的二进制位置为0|
+`b.flip()   `     |        把b中所有二进制位逐位取反|
+`b.flip(pos) `         |          把b中在pos处的二进制位取反|
+`b.to_ulong()  `         |      用b中同样的二进制位返回一个unsigned long值|
+`os << b   `         |        把b中的位集输出到os流|
+
+

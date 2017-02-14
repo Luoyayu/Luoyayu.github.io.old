@@ -10,8 +10,7 @@ tags:
     - ACM_搜索(bfs)
 ---
 
-###   Problem 
- <strong>胜利大逃亡</strong>   
+###   Problem  <strong>胜利大逃亡</strong>   
 
 >   Problem Description       
      

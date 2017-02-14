@@ -11,7 +11,7 @@ tags:
 ---
 
 ###   Problem 
-     <strong>胜利大逃亡</strong>   
+ <strong>胜利大逃亡</strong>   
 
 >   Problem Description       
      
@@ -45,7 +45,6 @@ Ignatius被魔王抓走了,有一天魔王出差去了,这可是Ignatius逃亡�
 >11  
 
 ## *题解*
- 
  本题主要是三维bfs+剪枝，上代码：
 
 ```cpp 

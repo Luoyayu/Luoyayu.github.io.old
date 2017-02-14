@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="wyClxj4QrUFJ5xfOaM-0BY9atSSmHeFNKg3XXcX-yUQ" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="个人博客">
     <meta name="keywords"  content=" 博客, 个人网站, 互联网">
@@ -226,74 +226,18 @@
 </blockquote>
 
 <h4 id="正文">正文</h4>
-<p>youtube播放器测试：</p>
 
-<p>Jekyll 主题 fork 了 <em>Clean Blog</em>，标签支持来自<em>Hux</em> 支持</p>
+<p>Jekyll 主题 fork 了 <em>Clean</em> Blog，标签支持来自<em>Hux</em> 支持，</p>
 
-<p>今后会添加web slider #iframe</p>
+<p>今后会添加web slider #iframe，</p>
 
 <p>Theme 的 CSS 是基于 Bootstrap 定制的，</p>
 
 <p>中文字体的渲染，fork 了 <a href="http://www.typeisbeautiful.com/">Type is Beautiful</a> 的 <code class="highlighter-rouge">font</code> CSS，调整了字号，适配了 Win 的渣渲染。</p>
 
-<p>C++代码测试：</p>
+<p>总算搭好个人博客了，今天是我开始记录的日子，好好对待，期待丰收的明年。</p>
 
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="n">matrix</span>
-<span class="p">{</span>
-    <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">15</span><span class="p">][</span><span class="mi">15</span><span class="p">];</span>
-<span class="p">};</span>
-<span class="n">matrix</span> <span class="n">mat1</span><span class="p">;</span>
-<span class="n">matrix</span> <span class="n">mat2</span><span class="p">;</span>
-<span class="n">matrix</span> <span class="nf">function</span><span class="p">(</span><span class="n">matrix</span> <span class="n">mat1</span><span class="p">,</span><span class="n">matrix</span> <span class="n">mat2</span><span class="p">,</span><span class="kt">int</span> <span class="n">mod</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">;</span>
-    <span class="n">matrix</span> <span class="n">T</span><span class="p">;</span>
-    <span class="n">memset</span><span class="p">(</span><span class="n">T</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span> <span class="n">T</span><span class="p">.</span><span class="n">a</span><span class="p">);</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">for</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">;</span><span class="n">k</span><span class="o">++</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="n">T</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">T</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="n">mat1</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">mat2</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">%</span><span class="n">mod</span><span class="p">)</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">T</span><span class="p">;</span>
-    <span class="n">memset</span><span class="p">(</span><span class="n">T</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span> <span class="n">T</span><span class="p">.</span><span class="n">a</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-      <span class="kt">int</span> <span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">;</span>
-    <span class="n">__int64</span> <span class="n">n</span><span class="p">;</span>
-    <span class="n">__int64</span> <span class="n">mod</span><span class="o">=</span><span class="mi">7</span><span class="p">;</span>
-      <span class="k">while</span><span class="p">(</span><span class="n">scanf</span><span class="p">(</span><span class="s">"%d%d%I64d"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">A</span><span class="p">,</span><span class="o">&amp;</span><span class="n">B</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">)</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span>
-      <span class="p">{</span>
-          <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="o">==</span><span class="mi">0</span><span class="o">&amp;&amp;</span><span class="n">B</span><span class="o">==</span><span class="mi">0</span><span class="o">&amp;&amp;</span><span class="n">n</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="k">break</span><span class="p">;</span>
-          <span class="n">mat1</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">A</span><span class="p">;</span><span class="n">mat2</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">A</span><span class="p">;</span>
-          <span class="n">mat1</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">B</span><span class="p">;</span><span class="n">mat2</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">B</span><span class="p">;</span>
-          <span class="n">mat1</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">mat2</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-          <span class="n">mat1</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">mat2</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-          <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="o">||</span><span class="n">n</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span>
-          <span class="p">{</span>
-              <span class="n">printf</span><span class="p">(</span><span class="s">"1</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
-          <span class="p">}</span>
-          <span class="k">else</span>
-          <span class="p">{</span>
-              <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="o">-</span><span class="mi">3</span><span class="p">;</span>
-              <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span>
-              <span class="p">{</span>
-                  <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">)</span>
-                  <span class="n">mat1</span><span class="o">=</span><span class="n">function</span><span class="p">(</span><span class="n">mat1</span><span class="p">,</span><span class="n">mat2</span><span class="p">,</span><span class="n">mod</span><span class="p">);</span>
-                  <span class="n">mat2</span><span class="o">=</span><span class="n">function</span><span class="p">(</span><span class="n">mat2</span><span class="p">,</span><span class="n">mat2</span><span class="p">,</span><span class="n">mod</span><span class="p">);</span>
-                  <span class="n">n</span><span class="o">&gt;&gt;=</span><span class="mi">1</span><span class="p">;</span>
-              <span class="p">}</span>
-              <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,(</span><span class="n">mat1</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">mat1</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span><span class="o">%</span><span class="n">mod</span><span class="p">);</span>
-          <span class="p">}</span>
-      <span class="p">}</span>
-<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
-
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;------2017年2月</pre>
 
 
                 <hr style="visibility: hidden;">
@@ -311,9 +255,10 @@
 
 
 正文
-youtube播放器测试：
 
-Jekyll 主题 fork 了 Clean Blog，标签支持来自Hux... | 博客 | Luoyayu " >
+Jekyll 主题 fork 了 Clean Blog，标签支持来自Hux 支持，
+
+今后会添加web... | 博客 | Luoyayu " >
                     <div class="ds-share-inline">
                       <style> 
                         .ds-share-icons-16 {display:none;} 
@@ -344,9 +289,9 @@ Jekyll 主题 fork 了 Clean Blog，标签支持来自Hux... | 博客 | Luoyayu 
                     
                     
                     <li class="next">
-                        <a href="/2017/02/11/test/" data-toggle="tooltip" data-placement="top" title="Test">
+                        <a href="/2017/02/13/bitset/" data-toggle="tooltip" data-placement="top" title="C++ bitset类的使用与简介 ">
                         Next<br>
-                        <span>Test</span>
+                        <span>C++ bitset类的使用与简介 </span>
                         </a>
                     </li>
                     
@@ -365,6 +310,12 @@ Jekyll 主题 fork 了 Clean Blog，标签支持来自Hux... | 博客 | Luoyayu 
                 <!-- 多说评论框 end -->
                 
 
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
                 
 
             </div>  
@@ -405,6 +356,12 @@ Jekyll 主题 fork 了 Clean Blog，标签支持来自Hux... | 博客 | Luoyayu 
                                 </a>
                             
         				
+                            
+        				
+                            
+                				<a href="/tags/#ACM_搜索(bfs)" title="ACM_搜索(bfs)" rel="3">
+                                    ACM_搜索(bfs)
+                                </a>
                             
         				
         			</div>
@@ -450,6 +407,21 @@ Jekyll 主题 fork 了 Clean Blog，标签支持来自Hux... | 博客 | Luoyayu 
 
 
 
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "luoyayu";
+    var disqus_identifier = "/2017/02/10/hello-better";
+    var disqus_url = "http://localhost:4000/2017/02/10/hello-better/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
 
 
 

@@ -7,10 +7,10 @@ author:     "Luoyayu"
 header-img: "img/post-bg-universe.jpg"
 catalog: true
 tags:
-    - ACM_搜索
+    - ACM_搜索(bfs)
 ---
 
-###   HDU 1548
+###   HDU 1548（水题）
    -<strong>Catch That Cow</strong>   
 
 >   Problem Description       
@@ -40,7 +40,7 @@ Line 1: The least amount of time, in minutes, it takes for Farmer John to catch 
 [USACO 2007 Open Silver](http://acm.hdu.edu.cn/search.php?field=problem&key=USACO+2007+Open+Silver&source=1&searchmode=source)
 
 ## *题解*
- 对农夫的三种行为广搜，注意`K=N`时
+[coursera](https://www.coursera.org/learn/suanfa-jichu/home/week/8)上有讲解但是一开始过了POJ,试了下hdoj数据太强没过，要对农夫的三种行为广搜,分为x+1,x-1,2*x，注意`K=N`时处理。
 
 ### code
 
@@ -72,8 +72,7 @@ void bfs(int x)
             else if(i == 2)
                 nx = s - 1;
             else
-                nx = s * 2;
-            
+                nx = s * 2; 
             if(!vis[nx] && nx <= Max && nx >= 0) 
             {
                 vis[nx] = 1;

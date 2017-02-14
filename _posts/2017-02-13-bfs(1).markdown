@@ -7,10 +7,10 @@ author:     "Luoyayu"
 header-img: "imgpost-bg-universe.jpg"
 catalog: true
 tags:
-    - ACM_搜索
+    - ACM_搜索(bfs)
 ---
 
-###   HDU 1548
+###   HDU 1548（水题）
    <strong>A strange lift</strong>   
 
 >   Problem Description      

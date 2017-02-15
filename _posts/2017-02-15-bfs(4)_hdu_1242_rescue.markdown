@@ -1,0 +1,137 @@
+---
+layout: post 
+title: "HDU1242 Rescue"
+subtitle:  "BFS"
+date: 2017-02-15 10:15:26
+author:    "Luoyayu"
+header-img: "img/post-bg-universe.jpg"
+catalog: true
+tags:
+    - ACM_搜索(bfs)
+
+---
+
+###   Problem  <strong>Rescue</strong>  
+ 
+>####  <font color="#0099ff">Problem Description </font>   
+Angel was caught by the MOLIGPY! He was put in prison by Moligpy. The prison is described as a N * M (N, M <= 200) matrix. There are WALLs, ROADs, and GUARDs in the prison.
+Angel's friends want to save Angel. Their task is: approach Angel. We assume that "approach Angel" is to get to the position where Angel stays. When there's a guard in the grid, we must kill him (or her?) to move into the grid. We assume that we moving up, down, right, left takes us 1 unit time, and killing a guard takes 1 unit time, too. And we are strong enough to kill all the guards.
+You have to calculate the minimal time to approach Angel. (We can move only UP, DOWN, LEFT and RIGHT, to the neighbor grid within bound, of course.)
+
+>####  <font color="#0099ff">Input </font>       
+First line contains two integers stand for N and M.
+
+Then N lines follows, every line has M characters. "." stands for road, "a" stands for Angel, and "r" stands for each of Angel's friend. 
+
+Process to the end of the file.
+
+>####  <font color="#0099ff">Output</font>   
+For each test case, your program should output a single integer, standing for the minimal time needed. If such a number does no exist, you should output a line containing "Poor ANGEL has to stay in the prison all his life." 
+
+>####  <font color="#0099ff">Sample Input</font>   
+>7 8  
+#.#####.  
+#.a#..r. 
+#..#x...  
+..#..#.#  
+#...##..  
+.#......  
+........  
+ 
+>####  <font color="#0099ff">Sample Output</font>     
+>13   
+
+>####  <font color="#0099ff">Source</font>
+[ZOJ Monthly, October 2003](http://acm.hdu.edu.cn/search.php?field=problem&key=ZOJ+Monthly%2C+October+2003&source=1&searchmode=source)
+
+## *题解*
+ 本题需考虑的是步数与时间在队列中应该优先弹出的是哪一个，依题意，每次在队列中应该用时最少的出列，所以采用优先队列，确保每次都是时间最少的出队
+
+
+>####  <font color="#0099ff">Code</font>
+
+```cpp 
+#include <cstring>
+#include <queue>
+#include <iostream>
+#include <cstdio>
+using namespace std;
+int n,m,sx,sy;
+char map[205][205];
+bool vis[205][205];
+int dir[4][2]={1,0,-1,0,0,1,0,-1};
+struct node
+ {
+    int x,y,steps;
+    friend bool operator < (node a,node b)//返回最小值
+    {
+        return a.steps>b.steps;
+    }
+ }; 
+bool judge(int &a,int &b)
+{
+    if(a>0&&a<=n&&b>0&&b<=m&&!vis[a][b]&&map[a][b]!='#');
+    //也可以在迷宫周围打上'#'
+        return true;
+    else
+        return false;
+}
+int bfs()
+{
+    node start,next;
+    priority_queue<node> q;
+    memset(vis,false,sizeof vis);
+    start.x=sx,start.y=sy,start.steps=0;
+    map[sx][sy]='#',vis[sx][sy]=true;
+    q.push(start);
+    while(!q.empty())
+    {
+        start=q.top();
+        q.pop();
+        if(map[start.x][start.y]=='r')
+            return start.steps;
+        for(int i=0;i<4;i++)
+        {
+            next=start;
+            next.x+=dir[i][0],next.y+=dir[i][1],next.steps++;
+            if(judge(next.x,next.y))
+            {
+                vis[next.x][next.y]=true;
+                if(map[next.x][next.y]=='x')
+                    next.steps++;
+                q.push(next);
+            }
+            if(map[next.x][next.y]=='r')
+                return next.steps;
+        }
+    }
+    return 0;
+}
+int main()
+{
+    //freopen("input.txt","r",stdin);
+    //freopen("output.txt","w",stdout);
+    while(scanf("%d %d",&n,&m)!=EOF)
+    {
+        getchar();
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=1;j<=m;j++)
+            {
+                scanf("%c",&map[i][j]);
+                if(map[i][j]=='a')
+                    sx=i,sy=j;
+            }
+            getchar();
+        }
+        int ans=bfs();
+        if(ans)
+            printf("%d\n",ans); 
+        else 
+            printf("Poor ANGEL has to stay in the prison all his life.\n");
+    }
+    return 0;
+}
+
+```
+

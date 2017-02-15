@@ -221,46 +221,50 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h3 id="1problem-a">1.Problem A</h3>
-<p>-Uppercase
- 字符串水题</p>
+				<h3 id="1problem-a--uppercase">1.Problem A  Uppercase</h3>
+<p>字符串水题</p>
 
-<h3 id="2problem-b">2.Problem B</h3>
-<p>-<strong>XRT in FSK（天平称重）</strong></p>
+<h3 id="2problem-b---xrt-in-fsk天平称重">2.Problem B   <strong>XRT in FSK（天平称重）</strong></h3>
+
 <blockquote>
-  <p>Problem Description</p>
+  <h4 id="problem-description-"><font color="#0099ff">Problem Description </font></h4>
 </blockquote>
 
 <p>由于学校的实习安排，XRT被安排去了烟台FSK当质检工。每次XRT都要检查n个小球，已知这n个小球里面有一个是比较轻的，
-     其余的n-1个小球重量都相同。XRT有一个天平，每次他可以把若干个球放在左边，若干个球放在右边，
-     然后得到结果：左边重，右边重和平衡。告诉他,最少测量多少次能保证把比较轻的小球找出来吗?</p>
+其余的n-1个小球重量都相同。XRT有一个天平，每次他可以把若干个球放在左边，若干个球放在右边，
+然后得到结果：左边重，右边重和平衡。告诉他,最少测量多少次能保证把比较轻的小球找出来吗?</p>
 
 <blockquote>
-  <p>Input   <br />
-输入包含多组数据 对于每组数据，输入一个正整数 <script type="math/tex">n（1≤n≤10^8）</script></p>
+  <h4 id="input-"><font color="#0099ff">Input </font></h4>
+</blockquote>
+
+<p>输入包含多组数据 对于每组数据，输入一个正整数 <script type="math/tex">n（1≤n≤10^8）</script></p>
+
+<blockquote>
+  <h4 id="output"><font color="#0099ff">Output</font></h4>
+  <p>每组样例输出一行,表示测量的最少次数.</p>
 </blockquote>
 
 <blockquote>
-  <p>Output   <br />
-每组样例输出一行,表示测量的最少次数.</p>
-</blockquote>
-
-<blockquote>
-  <p>Sample Input  <br />
-1 <br />
+  <h4 id="sample-input"><font color="#0099ff">Sample Input</font></h4>
+  <p>1 <br />
 10</p>
 </blockquote>
 
 <blockquote>
-  <p>Sample Output  <br />
-0   <br />
+  <h4 id="sample-output"><font color="#0099ff">Sample Output</font></h4>
+  <p>0   <br />
 3</p>
 </blockquote>
 
 <h2 id="题解"><em>题解</em></h2>
 <p>天平的状态无外乎只有三种左倾，右倾，平衡。而我们采取最少称量的方式是一堆放左变，一堆放右边，还有一堆放在旁边（如果可能且需要（n为偶数）的话）。
-        通过模拟7或8个球，可以看出，应该在球的总数中尽可能选完3的倍数个，例如8个球，可以选3个放左，3个放右，还有2个放一旁，例如16个球,6个放左边，6个放右边，4个放一旁。如果状态为平衡，则需要考虑放在一旁的，但是为了保证可以比较出较轻的，不平衡状态下的再称重次数一定比平衡状态下的多。
-       由此可见，问题归结到3的幂次问题。分界点为1，3，9，27，81······归纳得结论：n个球，最少保证的情况下，需要称（<script type="math/tex">\quad \sqrt[3]{n+k}∈Z</script>）次。代码如下：</p>
+通过模拟7或8个球，可以看出，应该在球的总数中尽可能选完3的倍数个，例如8个球，可以选3个放左，3个放右，还有2个放一旁，例如16个球,6个放左边，6个放右边，4个放一旁。如果状态为平衡，则需要考虑放在一旁的，但是为了保证可以比较出较轻的，不平衡状态下的再称重次数一定比平衡状态下的多。
+由此可见，问题归结到3的幂次问题。分界点为1，3，9，27，81······归纳得结论：n个球，最少保证的情况下，需要称（<script type="math/tex">\quad \sqrt[3]{n+k}∈Z</script>）次。代码如下：</p>
+
+<blockquote>
+  <h4 id="code"><font color="#0099ff">Code</font></h4>
+</blockquote>
 
 <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cp">#include&lt;cstdio&gt;
 #include&lt;cstring&gt;
@@ -306,29 +310,28 @@
 </code></pre>
 </div>
 
-<h3 id="3problem-d">3.Problem D</h3>
-<p>-<strong>The sad match I</strong></p>
+<h3 id="3problem-d-the-sad-match-i">3.Problem D <strong>The sad match I</strong></h3>
 <blockquote>
-  <p>Problem Description <br />
-    集训队又要选拔了，今年为了壮大集训队规模，学校打算出很多很多场选拔赛，第i场的持续时间是[ai,bi)。每一场选拔赛都必须至少有一个老队员在现场组织。很遗憾的是，选拔赛可能重叠，比如说可能有一场比赛在[4,9)举行，另一场在[6,10)举行，那么同学们只能选择参加其中一场了。当然，我绝不会关心，你能不能参加的，我关心的是我到底要不要被迫去现场组织比赛。只要两场比赛时间不冲突，他们就可以由同一个老队员组织。
+  <h4 id="problem-description--1"><font color="#0099ff">Problem Description </font></h4>
+  <p>集训队又要选拔了，今年为了壮大集训队规模，学校打算出很多很多场选拔赛，第i场的持续时间是[ai,bi)。每一场选拔赛都必须至少有一个老队员在现场组织。很遗憾的是，选拔赛可能重叠，比如说可能有一场比赛在[4,9)举行，另一场在[6,10)举行，那么同学们只能选择参加其中一场了。当然，我绝不会关心，你能不能参加的，我关心的是我到底要不要被迫去现场组织比赛。只要两场比赛时间不冲突，他们就可以由同一个老队员组织。
 现在给出所有的比赛时间，问最少需要多少个老队员作组织工作。
 例如在<script type="math/tex">[0, 5), [2, 10), [8,9)</script>各有一场比赛，那么可以让一个老队员去第一、三场，另一个老队员去第二场，这样只需要两个老队员就够了。</p>
 </blockquote>
 
 <blockquote>
-  <p>Input  <br />
-输入的第一行包含一个整数T，表示T个测试样例。 每一个测试样例的第一行包含一个正整数n(<script type="math/tex">n≤10^5</script> )，表示有n场选拔赛。 接下来的n行有每行有2个数，ai和bi, (<script type="math/tex">% <![CDATA[
+  <h4 id="input--1"><font color="#0099ff">Input </font></h4>
+  <p>输入的第一行包含一个整数T，表示T个测试样例。 每一个测试样例的第一行包含一个正整数n(<script type="math/tex">n≤10^5</script> )，表示有n场选拔赛。 接下来的n行有每行有2个数，ai和bi, (<script type="math/tex">% <![CDATA[
 0≤ai < bi ≤10^5 %]]></script>)。</p>
 </blockquote>
 
 <blockquote>
-  <p>Output   <br />
-对于每组数据，输出至少需要的老队员的人数</p>
+  <h4 id="output-1"><font color="#0099ff">Output</font></h4>
+  <p>对于每组数据，输出至少需要的老队员的人数</p>
 </blockquote>
 
 <blockquote>
-  <p>Sample Input <br />
-3  <br />
+  <h4 id="sample-input-1"><font color="#0099ff">Sample Input</font></h4>
+  <p>3  <br />
 2  <br />
 4 9  <br />
 6 10  <br />
@@ -342,38 +345,39 @@
 </blockquote>
 
 <blockquote>
-  <p>Sample Output  <br />
-0  <br />
+  <h4 id="sample-output-1"><font color="#0099ff">Sample Output</font></h4>
+  <p>0  <br />
 3</p>
 </blockquote>
 
 <h2 id="题解-1"><em>题解</em></h2>
 <p>第一次听说差分序列，我是贪心过。</p>
 
-<h3 id="problem-f">Problem F</h3>
-<p>-<strong>Count the continent</strong></p>
+<h3 id="problem-f-count-the-continent">Problem F <strong>Count the continent</strong></h3>
 <blockquote>
-  <p>Problem Description <br />
-    给出一个二维矩阵，表示一张地图，0表示海洋,1表示陆地，若一块陆地的坐标为(r,c)，
-    如果另一块陆地为 (r-1,c) 或 (r+1,c) 或 (r,c-1) 或 (r,c+1)，
-    则我们认为这两块陆地相邻，所有相邻的陆地我们称之为一个大陆，求大陆的数量。</p>
+  <h4 id="problem-description--2"><font color="#0099ff">Problem Description </font></h4>
+  <div class="highlighter-rouge"><pre class="highlight"><code>给出一个二维矩阵，表示一张地图，0表示海洋,1表示陆地，若一块陆地的坐标为(r,c)，
+如果另一块陆地为 (r-1,c) 或 (r+1,c) 或 (r,c-1) 或 (r,c+1)，
+则我们认为这两块陆地相邻，所有相邻的陆地我们称之为一个大陆，求大陆的数量。
+</code></pre>
+  </div>
 </blockquote>
 
 <blockquote>
-  <p>Input <br />
-输入包含多组数据
+  <h4 id="input--2"><font color="#0099ff">Input </font></h4>
+  <p>输入包含多组数据
 对于每组数据，输入第一行为一个正整数N (N≤10 )，然后给出一个<script type="math/tex">N * N</script> 的矩阵
 接下来的N行每行N个元素以空格分开，表示该格是陆地还是海洋。</p>
 </blockquote>
 
 <blockquote>
-  <p>Output   <br />
-对于每组数据，输出大陆的数量。</p>
+  <h4 id="output-2"><font color="#0099ff">Output</font></h4>
+  <p>对于每组数据，输出大陆的数量。</p>
 </blockquote>
 
 <blockquote>
-  <p>Sample Input <br />
-4<br />
+  <h4 id="sample-input-2"><font color="#0099ff">Sample Input</font></h4>
+  <p>4<br />
 1 1 0 0<br />
 1 1 0 0<br />
 0 0 1 0<br />
@@ -389,8 +393,8 @@
 </blockquote>
 
 <blockquote>
-  <p>Sample Output <br />
-2<br />
+  <h4 id="sample-output-2"><font color="#0099ff">Sample Output</font></h4>
+  <p>2<br />
 1<br />
 1</p>
 </blockquote>
@@ -398,64 +402,63 @@
 <h2 id="题解-2"><em>题解</em></h2>
 
 <blockquote>
-  <p>Problem Description <br />
-已知a, n，求，求<script type="math/tex">\sum_{i=1}^{n}(a^{n-i}(a-1)^{i-1})mod 1000000007</script></p>
+  <h4 id="problem-description--3"><font color="#0099ff">Problem Description </font></h4>
+  <p>已知a, n，求，求<script type="math/tex">\sum_{i=1}^{n}(a^{n-i}(a-1)^{i-1})mod 1000000007</script></p>
 </blockquote>
 
 <blockquote>
-  <p>Input <br />
-输入第一行是一个正整数T(<script type="math/tex">T≤1000</script>)，表示有T组数据；每组数据包含两个正整数a, n(<script type="math/tex">a,n≤10^9</script> )。</p>
+  <h4 id="input--3"><font color="#0099ff">Input </font></h4>
+  <p>输入第一行是一个正整数T(<script type="math/tex">T≤1000</script>)，表示有T组数据；每组数据包含两个正整数a, n(<script type="math/tex">a,n≤10^9</script> )。</p>
 </blockquote>
 
 <blockquote>
-  <p>Output <br />
-对于每组数据，输出上式的结果。</p>
+  <h4 id="output-3"><font color="#0099ff">Output</font></h4>
+  <p>对于每组数据，输出上式的结果。</p>
 </blockquote>
 
 <blockquote>
-  <p>Sample Input <br />
-3<br />
+  <h4 id="sample-input-3"><font color="#0099ff">Sample Input</font></h4>
+  <p>3<br />
 1 1 <br />
 2 2 <br />
 5 10</p>
 </blockquote>
 
 <blockquote>
-  <p>Sample Output <br />
-1 <br />
+  <h4 id="sample-output-3"><font color="#0099ff">Sample Output</font></h4>
+  <p>1 <br />
 3 <br />
 8717049</p>
 </blockquote>
 
-<h2 id="problem">Problem</h2>
-<p>-<strong>I Zeros<strong></strong></strong></p>
+<h2 id="problem--i-zeros">Problem  <strong>I Zeros<strong></strong></strong></h2>
 <blockquote>
-  <p>Problem Description <br />
-给出n，计算n！末尾0的个数</p>
+  <h4 id="problem-description--4"><font color="#0099ff">Problem Description </font></h4>
+  <p>给出n，计算n！末尾0的个数</p>
 </blockquote>
 
 <blockquote>
-  <p>Input <br />
-输入包含多组数据
+  <h4 id="input--4"><font color="#0099ff">Input </font></h4>
+  <p>输入包含多组数据
 每组数据包含一个正整数n (<script type="math/tex">n≤10^9</script> )</p>
 </blockquote>
 
 <blockquote>
-  <p>Output <br />
-对于每组数据，输出n！末尾0的个数</p>
+  <h4 id="output-4"><font color="#0099ff">Output</font></h4>
+  <p>对于每组数据，输出n！末尾0的个数</p>
 </blockquote>
 
 <blockquote>
-  <p>Sample Input    <br />
-3<br />
+  <h4 id="sample-input-4"><font color="#0099ff">Sample Input</font></h4>
+  <p>3<br />
 5<br />
 100 <br />
 1024</p>
 </blockquote>
 
 <blockquote>
-  <p>Sample Output <br />
-0 <br />
+  <h4 id="sample-output-4"><font color="#0099ff">Sample Output</font></h4>
+  <p>0 <br />
 1<br />
 24 <br />
 253</p>
@@ -464,6 +467,10 @@
 <h2 id="题解-3"><em>题解</em></h2>
 <p>来自《编程之美》（2.2不要被阶乘吓到）的思想
 从“哪些数相乘等于10”考虑，if<script type="math/tex">N!=K*10^M</script>且<script type="math/tex">K%10!=0</script>,then<script type="math/tex">N!</script>末尾就有M个0。</p>
+
+<blockquote>
+  <h4 id="code-1"><font color="#0099ff">Code</font></h4>
+</blockquote>
 
 <div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cp">#include&lt;cstdio&gt;
 #include&lt;cstring&gt;
@@ -500,14 +507,13 @@
                     data-title="菜鸟先飞——第五场"
                     data-url="http://localhost:4000/2017/02/04/fifth-com/"
                     data-images="http://localhost:4000/img/post-bg-js-module.jpg"
-                    data-content="1.Problem A
--Uppercase
- 字符串水题
+                    data-content="1.Problem A  Uppercase
+字符串水题
 
-2.Problem B
--XRT in FSK（天平称重）
+2.Problem B   XRT in FSK（天平称重）
 
-  Problem Descr... | 博客 | Luoyayu " >
+
+  Problem Desc... | 博客 | Luoyayu " >
                     <div class="ds-share-inline">
                       <style> 
                         .ds-share-icons-16 {display:none;} 
@@ -528,13 +534,6 @@
 
 
                 <ul class="pager">
-                    
-                    <li class="previous">
-                        <a href="/2017/02/14/output/" data-toggle="tooltip" data-placement="top" title="Output">
-                        Previous<br>
-                        <span>Output</span>
-                        </a>
-                    </li>
                     
                     
                     <li class="next">
@@ -606,9 +605,7 @@
                             
         				
                             
-        				
-                            
-                				<a href="/tags/#ACM_搜索(bfs)" title="ACM_搜索(bfs)" rel="3">
+                				<a href="/tags/#ACM_搜索(bfs)" title="ACM_搜索(bfs)" rel="4">
                                     ACM_搜索(bfs)
                                 </a>
                             
@@ -719,7 +716,7 @@
                     
                     
                     <li>
-                        <a href="https://twitter.com/洛牙鱼">
+                        <a href="https://twitter.com/tongyuHu">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>

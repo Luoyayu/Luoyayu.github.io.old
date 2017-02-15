@@ -16,7 +16,7 @@ RSS: false
 weibo_username:    洛牙鱼
 zhihu_username:    Luoyayv
 github_username:   Luoyayu
-twitter_username: 洛牙鱼
+twitter_username: tongyuHu
 facebook_username: Luoyayu
 # linkedin_username:  firstname-lastname-idxxxx
 
@@ -68,12 +68,10 @@ ga_track_id: 'UA-91680039-1'            # Format: UA-xxxxxx-xx
 ga_domain: auto                               #缺省为auto,如有请填写个人域名
 
 
-
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "我有我的世界，<br>我有我的梦想"
 sidebar-avatar: /img/avatar-yurisa.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
-
 
 
 # Featured Tags
@@ -81,11 +79,9 @@ featured-tags: true                     # whether or not using Feature-Tags
 featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
 
 
-
 # Progressive Web Apps
 chrome-tab-theme-color: "#000000"
 service-worker: true
-
 
 
 # Friends

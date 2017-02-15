@@ -10,10 +10,9 @@ tags:
     - ACM_搜索(bfs)
 ---
 
-###   HDU 1548（水题）
-   -<strong>Catch That Cow</strong>   
+###   HDU 1548（水题） <strong>Catch That Cow</strong>   
 
->   Problem Description       
+>####  <font color="#0099ff">Problem Description </font>      
 
 Farmer John has been informed of the location of a fugitive cow and wants to catch her immediately. He starts at a point N (0 ≤ N ≤ 100,000) on a number line and the cow is at a point K (0 ≤ K ≤ 100,000) on the same number line. Farmer John has two modes of transportation: walking and teleporting.
 
@@ -22,21 +21,19 @@ Farmer John has been informed of the location of a fugitive cow and wants to cat
 
 If the cow, unaware of its pursuit, does not move at all, how long does it take for Farmer John to retrieve it?
 
->  Input     
-
+>####  <font color="#0099ff">Input </font>       
 Line 1: Two space-separated integers: N and K
 
->   Output     
-
+>####  <font color="#0099ff">Output</font>     
 Line 1: The least amount of time, in minutes, it takes for Farmer John to catch the fugitive cow.
->  Sample Input  
 
+>####  <font color="#0099ff">Sample Input</font> 
 >5 17  
 
->   Sample Output    
+>####  <font color="#0099ff">Sample Output</font>   
 >4   
 
->Source
+>####  <font color="#0099ff">Source</font>
 [USACO 2007 Open Silver](http://acm.hdu.edu.cn/search.php?field=problem&key=USACO+2007+Open+Silver&source=1&searchmode=source)
 
 ## *题解*

@@ -1,3 +1,8 @@
+---
+published: false
+---
+
+
 #some tips
 
 `跳转实现———[描述](#***)`

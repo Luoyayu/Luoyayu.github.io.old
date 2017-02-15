@@ -5,37 +5,186 @@
     <description>个人博客</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 14 Feb 2017 22:58:03 +0800</pubDate>
-    <lastBuildDate>Tue, 14 Feb 2017 22:58:03 +0800</lastBuildDate>
+    <pubDate>Wed, 15 Feb 2017 11:09:22 +0800</pubDate>
+    <lastBuildDate>Wed, 15 Feb 2017 11:09:22 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
+    
+      <item>
+        <title>HDU1242 Rescue</title>
+        <description>&lt;h3 id=&quot;problem--rescue&quot;&gt;Problem  &lt;strong&gt;Rescue&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;h4 id=&quot;problem-description-&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Problem Description &lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;Angel was caught by the MOLIGPY! He was put in prison by Moligpy. The prison is described as a N * M (N, M &amp;lt;= 200) matrix. There are WALLs, ROADs, and GUARDs in the prison.
+Angel’s friends want to save Angel. Their task is: approach Angel. We assume that “approach Angel” is to get to the position where Angel stays. When there’s a guard in the grid, we must kill him (or her?) to move into the grid. We assume that we moving up, down, right, left takes us 1 unit time, and killing a guard takes 1 unit time, too. And we are strong enough to kill all the guards.
+You have to calculate the minimal time to approach Angel. (We can move only UP, DOWN, LEFT and RIGHT, to the neighbor grid within bound, of course.)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;h4 id=&quot;input-&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Input &lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;First line contains two integers stand for N and M.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Then N lines follows, every line has M characters. “.” stands for road, “a” stands for Angel, and “r” stands for each of Angel’s friend.&lt;/p&gt;
+
+&lt;p&gt;Process to the end of the file.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;h4 id=&quot;output&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Output&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;For each test case, your program should output a single integer, standing for the minimal time needed. If such a number does no exist, you should output a line containing “Poor ANGEL has to stay in the prison all his life.”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;h4 id=&quot;sample-input&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Sample Input&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;7 8&lt;br /&gt;
+#.#####.&lt;br /&gt;
+#.a#..r. 
+#..#x…&lt;br /&gt;
+..#..#.#&lt;br /&gt;
+#…##..&lt;br /&gt;
+.#……&lt;br /&gt;
+……..&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;h4 id=&quot;sample-output&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Sample Output&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;13&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;h4 id=&quot;source&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Source&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;&lt;a href=&quot;http://acm.hdu.edu.cn/search.php?field=problem&amp;amp;key=ZOJ+Monthly%2C+October+2003&amp;amp;source=1&amp;amp;searchmode=source&quot;&gt;ZOJ Monthly, October 2003&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;题解&quot;&gt;&lt;em&gt;题解&lt;/em&gt;&lt;/h2&gt;
+&lt;p&gt;本题需考虑的是步数与时间在队列中应该优先弹出的是哪一个，依题意，每次在队列中应该用时最少的出列，所以采用优先队列，确保每次都是时间最少的出队&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;h4 id=&quot;code&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Code&lt;/font&gt;&lt;/h4&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;cstring&amp;gt;
+#include &amp;lt;queue&amp;gt;
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;cstdio&amp;gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;205&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;205&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;205&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;205&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;friend&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;operator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//返回最小值
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt; 
+&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;judge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'#'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//也可以在迷宫周围打上'#'
+&lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;priority_queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;memset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'#'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'r'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;judge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;vis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'x'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'r'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//freopen(&quot;input.txt&quot;,&quot;r&quot;,stdin);
+&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;//freopen(&quot;output.txt&quot;,&quot;w&quot;,stdout);
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d %d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;EOF&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;getchar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'a'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;sx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;getchar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; 
+        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; 
+            &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Poor ANGEL has to stay in the prison all his life.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Wed, 15 Feb 2017 18:15:26 +0800</pubDate>
+        <link>http://localhost:4000/2017/02/15/bfs(4)_hdu_1242_rescue/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/02/15/bfs(4)_hdu_1242_rescue/</guid>
+        
+        <category>ACM_搜索(bfs)</category>
+        
+        
+      </item>
     
       <item>
         <title>HDU1548 胜利大逃亡</title>
         <description>&lt;h3 id=&quot;problem--胜利大逃亡&quot;&gt;Problem  &lt;strong&gt;胜利大逃亡&lt;/strong&gt;&lt;/h3&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Problem Description&lt;/p&gt;
+  &lt;h4 id=&quot;problem-description-&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Problem Description &lt;/font&gt;&lt;/h4&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Ignatius被魔王抓走了,有一天魔王出差去了,这可是Ignatius逃亡的好机会. 
 魔王住在一个城堡里,城堡是一个&lt;script type=&quot;math/tex&quot;&gt;A*B*C&lt;/script&gt;的立方体,可以被表示成A个&lt;script type=&quot;math/tex&quot;&gt;B*C&lt;/script&gt;的矩阵,刚开始Ignatius被关在&lt;script type=&quot;math/tex&quot;&gt;(0,0,0)&lt;/script&gt;的位置,离开城堡的门在&lt;script type=&quot;math/tex&quot;&gt;(A-1,B-1,C-1)&lt;/script&gt;的位置,现在知道魔王将在T分钟后回到城堡,Ignatius每分钟能从一个坐标走到相邻的六个坐标中的其中一个.现在给你城堡的地图,请你计算出Ignatius能否在魔王回来前离开城堡(只要走到出口就算离开城堡,如果走到出口的时候魔王刚好回来也算逃亡成功),如果可以请输出需要多少分钟才能离开,如果不能则输出&lt;script type=&quot;math/tex&quot;&gt;-1&lt;/script&gt;.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Input&lt;/p&gt;
+  &lt;h4 id=&quot;input-&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Input &lt;/font&gt;&lt;/h4&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;img src=&quot;\img\in-post\1.jpg&quot; alt=&quot;&quot; /&gt;
 输入数据的第一行是一个正整数K,表明测试数据的数量.每组测试数据的第一行是四个正整数A,B,C和T(1&amp;lt;=A,B,C&amp;lt;=50,1&amp;lt;=T&amp;lt;=1000),它们分别代表城堡的大小和魔王回来的时间.然后是A块输入数据(先是第0块,然后是第1块,第2块……),每块输入数据有B行,每行有C个正整数,代表迷宫的布局,其中0代表路,1代表墙.(如果对输入描述不清楚,可以参考Sample Input中的迷宫描述,它表示的就是上图中的迷宫)&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Output&lt;/p&gt;
+  &lt;h4 id=&quot;output&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Output&lt;/font&gt;&lt;/h4&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;对于每组测试数据,如果Ignatius能够在魔王回来前离开城堡,那么请输出他最少需要多少分钟,否则输出-1.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Sample Input  &lt;br /&gt;
-1 &lt;br /&gt;
+  &lt;h4 id=&quot;sample-input&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Sample Input&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;1 &lt;br /&gt;
 3 3 4 20&lt;br /&gt;
 0 1 1 1&lt;br /&gt;
 0 0 1 1&lt;br /&gt;
@@ -49,12 +198,16 @@
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Sample Output  &lt;br /&gt;
-11&lt;/p&gt;
+  &lt;h4 id=&quot;sample-output&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Sample Output&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;11&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&quot;题解&quot;&gt;&lt;em&gt;题解&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;本题主要是三维bfs+剪枝，上代码：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;h4 id=&quot;code&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Code&lt;/font&gt;&lt;/h4&gt;
+&lt;/blockquote&gt;
 
 &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;cstring&amp;gt;
 #include &amp;lt;cstdio&amp;gt;
@@ -133,41 +286,11 @@
       </item>
     
       <item>
-        <title>Output</title>
-        <description></description>
-        <pubDate>Tue, 14 Feb 2017 20:10:09 +0800</pubDate>
-        <link>http://localhost:4000/2017/02/14/output/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/02/14/output/</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>Input</title>
-        <description>1 3 3 4 20
-0 1 1 1
-0 0 1 1
-0 1 1 1
-1 1 1 1
-1 0 0 1
-0 1 1 1
-0 0 0 0
-0 1 1 0
-0 1 1 0</description>
-        <pubDate>Tue, 14 Feb 2017 20:10:05 +0800</pubDate>
-        <link>http://localhost:4000/2017/02/14/input/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/02/14/input/</guid>
-        
-        
-      </item>
-    
-      <item>
         <title>HDU1548 Catch That Cow</title>
-        <description>&lt;h3 id=&quot;hdu-1548水题&quot;&gt;HDU 1548（水题）&lt;/h3&gt;
-&lt;p&gt;-&lt;strong&gt;Catch That Cow&lt;/strong&gt;&lt;/p&gt;
+        <description>&lt;h3 id=&quot;hdu-1548水题-catch-that-cow&quot;&gt;HDU 1548（水题） &lt;strong&gt;Catch That Cow&lt;/strong&gt;&lt;/h3&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Problem Description&lt;/p&gt;
+  &lt;h4 id=&quot;problem-description-&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Problem Description &lt;/font&gt;&lt;/h4&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Farmer John has been informed of the location of a fugitive cow and wants to catch her immediately. He starts at a point N (0 ≤ N ≤ 100,000) on a number line and the cow is at a point K (0 ≤ K ≤ 100,000) on the same number line. Farmer John has two modes of transportation: walking and teleporting.&lt;/p&gt;
@@ -180,32 +303,28 @@
 &lt;p&gt;If the cow, unaware of its pursuit, does not move at all, how long does it take for Farmer John to retrieve it?&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Input&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Line 1: Two space-separated integers: N and K&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Output&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Line 1: The least amount of time, in minutes, it takes for Farmer John to catch the fugitive cow.&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;Sample Input&lt;/p&gt;
+  &lt;h4 id=&quot;input-&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Input &lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;Line 1: Two space-separated integers: N and K&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
+  &lt;h4 id=&quot;output&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Output&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;Line 1: The least amount of time, in minutes, it takes for Farmer John to catch the fugitive cow.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;h4 id=&quot;sample-input&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Sample Input&lt;/font&gt;&lt;/h4&gt;
   &lt;p&gt;5 17&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Sample Output  &lt;br /&gt;
-4&lt;/p&gt;
+  &lt;h4 id=&quot;sample-output&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Sample Output&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;4&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Source
-&lt;a href=&quot;http://acm.hdu.edu.cn/search.php?field=problem&amp;amp;key=USACO+2007+Open+Silver&amp;amp;source=1&amp;amp;searchmode=source&quot;&gt;USACO 2007 Open Silver&lt;/a&gt;&lt;/p&gt;
+  &lt;h4 id=&quot;source&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Source&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;&lt;a href=&quot;http://acm.hdu.edu.cn/search.php?field=problem&amp;amp;key=USACO+2007+Open+Silver&amp;amp;source=1&amp;amp;searchmode=source&quot;&gt;USACO 2007 Open Silver&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&quot;题解&quot;&gt;&lt;em&gt;题解&lt;/em&gt;&lt;/h2&gt;
@@ -282,32 +401,29 @@
     
       <item>
         <title>HDU1548 A strange lift</title>
-        <description>&lt;h3 id=&quot;hdu-1548水题&quot;&gt;HDU 1548（水题）&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;A strange lift&lt;/strong&gt;&lt;/p&gt;
+        <description>&lt;h3 id=&quot;hdu-1548水题a-strange-lift&quot;&gt;HDU 1548（水题）&lt;strong&gt;A strange lift&lt;/strong&gt;&lt;/h3&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Problem Description&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;There is a strange lift.The lift can stop can at every floor as you want, and there is a number Ki(0 &amp;lt;= Ki &amp;lt;= N) on every floor.The lift have just two buttons: up and down.When you at floor i,if you press the button “UP” , you will go up Ki floor,i.e,you will go to the i+Ki th floor,as the same, if you press the button “DOWN” , you will go down Ki floor,i.e,you will go to the i-Ki th floor. Of course, the lift can’t go up high than N,and can’t go down lower than 1. For example, there is a buliding with 5 floors, and k1 = 3, k2 = 3,k3 = 1,k4 = 2, k5 = 5.Begining from the 1 st floor,you can press the button “UP”, and you’ll go up to the 4 th floor,and if you press the button “DOWN”, the lift can’t do it, because it can’t go down to the -2 th floor,as you know ,the -2 th floor isn’t exist.
+  &lt;h4 id=&quot;problem-description-&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Problem Description &lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;There is a strange lift.The lift can stop can at every floor as you want, and there is a number Ki(0 &amp;lt;= Ki &amp;lt;= N) on every floor.The lift have just two buttons: up and down.When you at floor i,if you press the button “UP” , you will go up Ki floor,i.e,you will go to the i+Ki th floor,as the same, if you press the button “DOWN” , you will go down Ki floor,i.e,you will go to the i-Ki th floor. Of course, the lift can’t go up high than N,and can’t go down lower than 1. For example, there is a buliding with 5 floors, and k1 = 3, k2 = 3,k3 = 1,k4 = 2, k5 = 5.Begining from the 1 st floor,you can press the button “UP”, and you’ll go up to the 4 th floor,and if you press the button “DOWN”, the lift can’t do it, because it can’t go down to the -2 th floor,as you know ,the -2 th floor isn’t exist.
 Here comes the problem: when you are on floor A,and you want to go to floor B,how many times at least he has to press the button “UP” or “DOWN”?&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Input&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;The input consists of several test cases.,Each test case contains two lines.
+&lt;blockquote&gt;
+  &lt;h4 id=&quot;input-&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Input &lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;The input consists of several test cases.,Each test case contains two lines.
 The first line contains three integers N ,A,B( 1 &amp;lt;= N,A,B &amp;lt;= 200) which describe above,The second line consist N integers k1,k2,….kn.
 A single 0 indicate the end of the input.&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Output&lt;/p&gt;
+  &lt;h4 id=&quot;output&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Output&lt;/font&gt;&lt;/h4&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;For each case of the input output a interger, the least times you have to press the button when you on floor A,and you want to go to floor B.If you can’t reach floor B,printf “-1”.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Sample Input&lt;/p&gt;
+  &lt;h4 id=&quot;sample-input&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Sample Input&lt;/font&gt;&lt;/h4&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
@@ -317,7 +433,7 @@ A single 0 indicate the end of the input.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Sample Output&lt;/p&gt;
+  &lt;h4 id=&quot;sample-output&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Sample Output&lt;/font&gt;&lt;/h4&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
@@ -390,225 +506,6 @@ A single 0 indicate the end of the input.&lt;/p&gt;
       </item>
     
       <item>
-        <title>C++ bitset类的使用与简介 </title>
-        <description>&lt;h1 id=&quot;声明&quot;&gt;声明&lt;/h1&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;转载自https://briskblog.eu.org @枯龙吟 
-内容有修改。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;简介&quot;&gt;简介&lt;/h1&gt;
-
-&lt;p&gt;有些程序要处理二进制位的有序集，每个位可能包含的是0（关）或1（开）的值。
-&lt;code class=&quot;highlighter-rouge&quot;&gt;C++ std::bitset&lt;/code&gt;, 是C++中模拟bool数组的一个类，存放于&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;bitset&amp;gt;&lt;/code&gt; 库；&lt;/p&gt;
-
-&lt;h1 id=&quot;bitset的定义和初始化&quot;&gt;bitset的定义和初始化&lt;/h1&gt;
-
-&lt;p&gt;表3-6列出了bitset的构造函数。
-与vector不一样的是bitset类型对象的区别仅在其长度而不在其类型。
-在定义bitset时，要用常量表达式明确bitset含有多少位：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;bitset&amp;lt;32&amp;gt; Flag; &lt;/code&gt;//32位，全为0。
-each element occupies only one bit；
-default constructor: The object is initialized with zeros.
-这条语句把Flag定义为含有32个位的bitset对象。
-只能按位置来访问它们。位集合的位置编号从0开始
-以0位开始的位串是低阶位(low-order bit)，以31位结束的位串是高阶位(high-order bit)。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;表3-6  初始化bitset对象的方法&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;bitset&amp;lt;n&amp;gt; b; &lt;/code&gt;&lt;/th&gt;
-      &lt;th&gt;b有n位，每位都为0&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;bitset&amp;lt;n&amp;gt; b(u); &lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;b是unsigned long型u的一个副本&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;bitset&amp;lt;n&amp;gt; b(s);   &lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;b是string对象s中含有的位串的副本&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;bitset&amp;lt;n&amp;gt; b(s, pos, n); &lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;b是s中从位置pos开始的n个位的副本&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h1 id=&quot;1-用unsigned值初始化bitset对象&quot;&gt;1. 用unsigned值初始化bitset对象&lt;/h1&gt;
-
-&lt;p&gt;用unsigned long初始定义一个&lt;code class=&quot;highlighter-rouge&quot;&gt;bitset&lt;/code&gt;，该值将转化为二进制的位模式。
-而bitset对象中的位集作为这种位模式的副本。如果bitset类型长度大于unsigned long值的二进制位数，
-则其余的高阶位置为0；如果bitet类型长度小于unsigned long值的二进制位数，则只使用unsigned值中的低阶位，
-超过bitet类型长度的高阶位将被丢弃。&lt;/p&gt;
-
-&lt;p&gt;在32位unsigned long的机器上，十六进制值0xffff表示为二进制位就是十六个1和十六个0（每个0xf可表示为1111）。
-可以用0xffff初始化bitset对象：&lt;/p&gt;
-
-&lt;p&gt;// bitvec1 is smaller than the initializer&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;bitset&amp;lt;16&amp;gt; bitvec1(0xffff);  &lt;/code&gt;        // bits 0 … 15 are set to 1&lt;/p&gt;
-
-&lt;p&gt;// bitvec2 same size as initializer&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;bitset&amp;lt;32&amp;gt; bitvec2(0xffff);  &lt;/code&gt;        // bits 0 … 15 are set to 1; 16 … 31 are 0&lt;/p&gt;
-
-&lt;p&gt;// on a 32-bit machine, bits 0 to 31 initialized from 0xffff&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;bitset&amp;lt;128&amp;gt; bitvec3(0xffff);&lt;/code&gt;         // bits 32 through 127 initialized to zero&lt;/p&gt;
-
-&lt;p&gt;上面的三个例子中，0到15位都置为1。由于bitvec1位数少于unsigned long的位数，
-因此bitvec1的初始值的高阶位被丢弃。bitvec2和unsigned long长度相同，
-因此所有位正好放置了初始值。bitvec3长度大于32，31位以上的高阶位就被置为0。&lt;/p&gt;
-
-&lt;h1 id=&quot;2-用string对象初始化bitset对象&quot;&gt;2. 用string对象初始化bitset对象&lt;/h1&gt;
-
-&lt;p&gt;当用string对象初始化bitset对象时，string对象直接表示为位模式。
-从string对象读入位集的顺序是从右向左：
-&lt;code class=&quot;highlighter-rouge&quot;&gt;string strval(&quot;1100&quot;);&lt;/code&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;bitset&amp;lt;32&amp;gt; bitvec4(strval);&lt;/code&gt;
-bitvec4的位模式中第2和3的位置为1，其余位置都为0。&lt;/p&gt;
-
-&lt;p&gt;如果string对象的字符个数小于bitset类型的长度，则高阶位将置为0。&lt;/p&gt;
-
-&lt;h1 id=&quot;表3-7--bitset操作&quot;&gt;表3-7  bitset操作&lt;/h1&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b.any()&lt;/code&gt;&lt;/th&gt;
-      &lt;th&gt;b中是否存在置为1的二进制位？&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b.none()&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;b中不存在置为1的二进制位吗？&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b.count() &lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;b中置为1的二进制位的个数&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b.size() &lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;b中二进制位的个数&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b[pos]  &lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;访问b中在pos处的二进制位&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b.test(pos) &lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;b中在pos处的二进制位是否为1？&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b.set()   &lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;把b中所有二进制位都置为1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b.set(pos)  &lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;把b中在pos处的二进制位置为1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b.reset() &lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;把b中所有二进制位都置为0&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b.reset(pos)  &lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;把b中在pos处的二进制位置为0&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b.flip()   &lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;把b中所有二进制位逐位取反&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b.flip(pos) &lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;把b中在pos处的二进制位取反&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b.to_ulong()  &lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;用b中同样的二进制位返回一个unsigned long值&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;os &amp;lt;&amp;lt; b   &lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;把b中的位集输出到os流&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-</description>
-        <pubDate>Mon, 13 Feb 2017 06:07:35 +0800</pubDate>
-        <link>http://localhost:4000/2017/02/13/bitset/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/02/13/bitset/</guid>
-        
-        <category>-C++</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>A Draft Post</title>
-        <description>&lt;p&gt;#some tips&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;跳转实现———[描述](#***)&lt;/code&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;p id = &quot;***&quot;&amp;gt; &amp;lt;/p&amp;gt;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;网站跳转———[描述](https:\\***\***\)&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;i&amp;gt;斜体&amp;lt;/i&amp;gt;&lt;/code&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;strong&amp;gt;加强&amp;lt;/strong&amp;gt;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve --watch --drafts&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;iframe width=&quot;500&quot; height=&quot;500&quot; src=&quot;https://www.youtube.com/embed/oHg5SJYRHA0?color=white&amp;amp;theme=light&quot;&amp;gt;&amp;lt;/iframe&amp;gt;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cd C:\Users\gavin\Desktop\Luoyayu.github.io&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pygmentize -S monokai -f html &amp;gt; pygments.css 生成指定代码高亮css&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;‘在网站根下目录建立 _plugins 文件夹，插件放在这里即可。 Jekyll 运行之前，会加载此目录下所有以 *.rb 结尾的文件’&lt;/p&gt;
-
-&lt;p&gt;YAML 头信息&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;p&gt;layout: post ——模版文件&lt;/p&gt;
-
-&lt;p&gt;title: Blogging Like a Hacker&lt;/p&gt;
-
-&lt;p&gt;subtitle:   “ 子标题”&lt;/p&gt;
-
-&lt;p&gt;author:     “作者”&lt;/p&gt;
-
-&lt;p&gt;published:false/true    —展示某篇特定的博文&lt;/p&gt;
-
-&lt;p&gt;header-img: “img绝对路径”&lt;/p&gt;
-
-&lt;p&gt;date:YYYY-MM-DD HH:MM:SS +/-TTTT&lt;/p&gt;
-
-&lt;p&gt;catalog: true——&lt;/p&gt;
-
-&lt;p&gt;tags:
-    -标签
-    -生活&lt;/p&gt;
-
-&lt;p&gt;iframe:”//huangxuan.me/js-module-7day/”——后期可以添加 Web Slides 参见https://github.com/Huxpro/js-module-7day&lt;/p&gt;
-
-&lt;hr /&gt;
-</description>
-        <pubDate>Fri, 10 Feb 2017 22:08:29 +0800</pubDate>
-        <link>http://localhost:4000/2017/02/10/a-draft-post/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/02/10/a-draft-post/</guid>
-        
-        
-      </item>
-    
-      <item>
         <title>Hello 2017</title>
         <description>&lt;blockquote&gt;
   &lt;p&gt;“Yeah It’s on. ”&lt;/p&gt;
@@ -639,46 +536,50 @@ bitvec4的位模式中第2和3的位置为1，其余位置都为0。&lt;/p&gt;
     
       <item>
         <title>菜鸟先飞——第五场</title>
-        <description>&lt;h3 id=&quot;1problem-a&quot;&gt;1.Problem A&lt;/h3&gt;
-&lt;p&gt;-Uppercase
- 字符串水题&lt;/p&gt;
+        <description>&lt;h3 id=&quot;1problem-a--uppercase&quot;&gt;1.Problem A  Uppercase&lt;/h3&gt;
+&lt;p&gt;字符串水题&lt;/p&gt;
 
-&lt;h3 id=&quot;2problem-b&quot;&gt;2.Problem B&lt;/h3&gt;
-&lt;p&gt;-&lt;strong&gt;XRT in FSK（天平称重）&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;2problem-b---xrt-in-fsk天平称重&quot;&gt;2.Problem B   &lt;strong&gt;XRT in FSK（天平称重）&lt;/strong&gt;&lt;/h3&gt;
+
 &lt;blockquote&gt;
-  &lt;p&gt;Problem Description&lt;/p&gt;
+  &lt;h4 id=&quot;problem-description-&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Problem Description &lt;/font&gt;&lt;/h4&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;由于学校的实习安排，XRT被安排去了烟台FSK当质检工。每次XRT都要检查n个小球，已知这n个小球里面有一个是比较轻的，
-     其余的n-1个小球重量都相同。XRT有一个天平，每次他可以把若干个球放在左边，若干个球放在右边，
-     然后得到结果：左边重，右边重和平衡。告诉他,最少测量多少次能保证把比较轻的小球找出来吗?&lt;/p&gt;
+其余的n-1个小球重量都相同。XRT有一个天平，每次他可以把若干个球放在左边，若干个球放在右边，
+然后得到结果：左边重，右边重和平衡。告诉他,最少测量多少次能保证把比较轻的小球找出来吗?&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Input   &lt;br /&gt;
-输入包含多组数据 对于每组数据，输入一个正整数 &lt;script type=&quot;math/tex&quot;&gt;n（1≤n≤10^8）&lt;/script&gt;&lt;/p&gt;
+  &lt;h4 id=&quot;input-&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Input &lt;/font&gt;&lt;/h4&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;输入包含多组数据 对于每组数据，输入一个正整数 &lt;script type=&quot;math/tex&quot;&gt;n（1≤n≤10^8）&lt;/script&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;h4 id=&quot;output&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Output&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;每组样例输出一行,表示测量的最少次数.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Output   &lt;br /&gt;
-每组样例输出一行,表示测量的最少次数.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Sample Input  &lt;br /&gt;
-1 &lt;br /&gt;
+  &lt;h4 id=&quot;sample-input&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Sample Input&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;1 &lt;br /&gt;
 10&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Sample Output  &lt;br /&gt;
-0   &lt;br /&gt;
+  &lt;h4 id=&quot;sample-output&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Sample Output&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;0   &lt;br /&gt;
 3&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&quot;题解&quot;&gt;&lt;em&gt;题解&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;天平的状态无外乎只有三种左倾，右倾，平衡。而我们采取最少称量的方式是一堆放左变，一堆放右边，还有一堆放在旁边（如果可能且需要（n为偶数）的话）。
-        通过模拟7或8个球，可以看出，应该在球的总数中尽可能选完3的倍数个，例如8个球，可以选3个放左，3个放右，还有2个放一旁，例如16个球,6个放左边，6个放右边，4个放一旁。如果状态为平衡，则需要考虑放在一旁的，但是为了保证可以比较出较轻的，不平衡状态下的再称重次数一定比平衡状态下的多。
-       由此可见，问题归结到3的幂次问题。分界点为1，3，9，27，81······归纳得结论：n个球，最少保证的情况下，需要称（&lt;script type=&quot;math/tex&quot;&gt;\quad \sqrt[3]{n+k}∈Z&lt;/script&gt;）次。代码如下：&lt;/p&gt;
+通过模拟7或8个球，可以看出，应该在球的总数中尽可能选完3的倍数个，例如8个球，可以选3个放左，3个放右，还有2个放一旁，例如16个球,6个放左边，6个放右边，4个放一旁。如果状态为平衡，则需要考虑放在一旁的，但是为了保证可以比较出较轻的，不平衡状态下的再称重次数一定比平衡状态下的多。
+由此可见，问题归结到3的幂次问题。分界点为1，3，9，27，81······归纳得结论：n个球，最少保证的情况下，需要称（&lt;script type=&quot;math/tex&quot;&gt;\quad \sqrt[3]{n+k}∈Z&lt;/script&gt;）次。代码如下：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;h4 id=&quot;code&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Code&lt;/font&gt;&lt;/h4&gt;
+&lt;/blockquote&gt;
 
 &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include&amp;lt;cstdio&amp;gt;
 #include&amp;lt;cstring&amp;gt;
@@ -724,29 +625,28 @@ bitvec4的位模式中第2和3的位置为1，其余位置都为0。&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;3problem-d&quot;&gt;3.Problem D&lt;/h3&gt;
-&lt;p&gt;-&lt;strong&gt;The sad match I&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;3problem-d-the-sad-match-i&quot;&gt;3.Problem D &lt;strong&gt;The sad match I&lt;/strong&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;Problem Description &lt;br /&gt;
-    集训队又要选拔了，今年为了壮大集训队规模，学校打算出很多很多场选拔赛，第i场的持续时间是[ai,bi)。每一场选拔赛都必须至少有一个老队员在现场组织。很遗憾的是，选拔赛可能重叠，比如说可能有一场比赛在[4,9)举行，另一场在[6,10)举行，那么同学们只能选择参加其中一场了。当然，我绝不会关心，你能不能参加的，我关心的是我到底要不要被迫去现场组织比赛。只要两场比赛时间不冲突，他们就可以由同一个老队员组织。
+  &lt;h4 id=&quot;problem-description--1&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Problem Description &lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;集训队又要选拔了，今年为了壮大集训队规模，学校打算出很多很多场选拔赛，第i场的持续时间是[ai,bi)。每一场选拔赛都必须至少有一个老队员在现场组织。很遗憾的是，选拔赛可能重叠，比如说可能有一场比赛在[4,9)举行，另一场在[6,10)举行，那么同学们只能选择参加其中一场了。当然，我绝不会关心，你能不能参加的，我关心的是我到底要不要被迫去现场组织比赛。只要两场比赛时间不冲突，他们就可以由同一个老队员组织。
 现在给出所有的比赛时间，问最少需要多少个老队员作组织工作。
 例如在&lt;script type=&quot;math/tex&quot;&gt;[0, 5), [2, 10), [8,9)&lt;/script&gt;各有一场比赛，那么可以让一个老队员去第一、三场，另一个老队员去第二场，这样只需要两个老队员就够了。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Input  &lt;br /&gt;
-输入的第一行包含一个整数T，表示T个测试样例。 每一个测试样例的第一行包含一个正整数n(&lt;script type=&quot;math/tex&quot;&gt;n≤10^5&lt;/script&gt; )，表示有n场选拔赛。 接下来的n行有每行有2个数，ai和bi, (&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+  &lt;h4 id=&quot;input--1&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Input &lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;输入的第一行包含一个整数T，表示T个测试样例。 每一个测试样例的第一行包含一个正整数n(&lt;script type=&quot;math/tex&quot;&gt;n≤10^5&lt;/script&gt; )，表示有n场选拔赛。 接下来的n行有每行有2个数，ai和bi, (&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
 0≤ai &lt; bi ≤10^5 %]]&gt;&lt;/script&gt;)。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Output   &lt;br /&gt;
-对于每组数据，输出至少需要的老队员的人数&lt;/p&gt;
+  &lt;h4 id=&quot;output-1&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Output&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;对于每组数据，输出至少需要的老队员的人数&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Sample Input &lt;br /&gt;
-3  &lt;br /&gt;
+  &lt;h4 id=&quot;sample-input-1&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Sample Input&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;3  &lt;br /&gt;
 2  &lt;br /&gt;
 4 9  &lt;br /&gt;
 6 10  &lt;br /&gt;
@@ -760,38 +660,39 @@ bitvec4的位模式中第2和3的位置为1，其余位置都为0。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Sample Output  &lt;br /&gt;
-0  &lt;br /&gt;
+  &lt;h4 id=&quot;sample-output-1&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Sample Output&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;0  &lt;br /&gt;
 3&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&quot;题解-1&quot;&gt;&lt;em&gt;题解&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;第一次听说差分序列，我是贪心过。&lt;/p&gt;
 
-&lt;h3 id=&quot;problem-f&quot;&gt;Problem F&lt;/h3&gt;
-&lt;p&gt;-&lt;strong&gt;Count the continent&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;problem-f-count-the-continent&quot;&gt;Problem F &lt;strong&gt;Count the continent&lt;/strong&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;Problem Description &lt;br /&gt;
-    给出一个二维矩阵，表示一张地图，0表示海洋,1表示陆地，若一块陆地的坐标为(r,c)，
-    如果另一块陆地为 (r-1,c) 或 (r+1,c) 或 (r,c-1) 或 (r,c+1)，
-    则我们认为这两块陆地相邻，所有相邻的陆地我们称之为一个大陆，求大陆的数量。&lt;/p&gt;
+  &lt;h4 id=&quot;problem-description--2&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Problem Description &lt;/font&gt;&lt;/h4&gt;
+  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;给出一个二维矩阵，表示一张地图，0表示海洋,1表示陆地，若一块陆地的坐标为(r,c)，
+如果另一块陆地为 (r-1,c) 或 (r+1,c) 或 (r,c-1) 或 (r,c+1)，
+则我们认为这两块陆地相邻，所有相邻的陆地我们称之为一个大陆，求大陆的数量。
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Input &lt;br /&gt;
-输入包含多组数据
+  &lt;h4 id=&quot;input--2&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Input &lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;输入包含多组数据
 对于每组数据，输入第一行为一个正整数N (N≤10 )，然后给出一个&lt;script type=&quot;math/tex&quot;&gt;N * N&lt;/script&gt; 的矩阵
 接下来的N行每行N个元素以空格分开，表示该格是陆地还是海洋。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Output   &lt;br /&gt;
-对于每组数据，输出大陆的数量。&lt;/p&gt;
+  &lt;h4 id=&quot;output-2&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Output&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;对于每组数据，输出大陆的数量。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Sample Input &lt;br /&gt;
-4&lt;br /&gt;
+  &lt;h4 id=&quot;sample-input-2&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Sample Input&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;4&lt;br /&gt;
 1 1 0 0&lt;br /&gt;
 1 1 0 0&lt;br /&gt;
 0 0 1 0&lt;br /&gt;
@@ -807,8 +708,8 @@ bitvec4的位模式中第2和3的位置为1，其余位置都为0。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Sample Output &lt;br /&gt;
-2&lt;br /&gt;
+  &lt;h4 id=&quot;sample-output-2&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Sample Output&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;2&lt;br /&gt;
 1&lt;br /&gt;
 1&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -816,64 +717,63 @@ bitvec4的位模式中第2和3的位置为1，其余位置都为0。&lt;/p&gt;
 &lt;h2 id=&quot;题解-2&quot;&gt;&lt;em&gt;题解&lt;/em&gt;&lt;/h2&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Problem Description &lt;br /&gt;
-已知a, n，求，求&lt;script type=&quot;math/tex&quot;&gt;\sum_{i=1}^{n}(a^{n-i}(a-1)^{i-1})mod 1000000007&lt;/script&gt;&lt;/p&gt;
+  &lt;h4 id=&quot;problem-description--3&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Problem Description &lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;已知a, n，求，求&lt;script type=&quot;math/tex&quot;&gt;\sum_{i=1}^{n}(a^{n-i}(a-1)^{i-1})mod 1000000007&lt;/script&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Input &lt;br /&gt;
-输入第一行是一个正整数T(&lt;script type=&quot;math/tex&quot;&gt;T≤1000&lt;/script&gt;)，表示有T组数据；每组数据包含两个正整数a, n(&lt;script type=&quot;math/tex&quot;&gt;a,n≤10^9&lt;/script&gt; )。&lt;/p&gt;
+  &lt;h4 id=&quot;input--3&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Input &lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;输入第一行是一个正整数T(&lt;script type=&quot;math/tex&quot;&gt;T≤1000&lt;/script&gt;)，表示有T组数据；每组数据包含两个正整数a, n(&lt;script type=&quot;math/tex&quot;&gt;a,n≤10^9&lt;/script&gt; )。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Output &lt;br /&gt;
-对于每组数据，输出上式的结果。&lt;/p&gt;
+  &lt;h4 id=&quot;output-3&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Output&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;对于每组数据，输出上式的结果。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Sample Input &lt;br /&gt;
-3&lt;br /&gt;
+  &lt;h4 id=&quot;sample-input-3&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Sample Input&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;3&lt;br /&gt;
 1 1 &lt;br /&gt;
 2 2 &lt;br /&gt;
 5 10&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Sample Output &lt;br /&gt;
-1 &lt;br /&gt;
+  &lt;h4 id=&quot;sample-output-3&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Sample Output&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;1 &lt;br /&gt;
 3 &lt;br /&gt;
 8717049&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&quot;problem&quot;&gt;Problem&lt;/h2&gt;
-&lt;p&gt;-&lt;strong&gt;I Zeros&lt;strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;problem--i-zeros&quot;&gt;Problem  &lt;strong&gt;I Zeros&lt;strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;Problem Description &lt;br /&gt;
-给出n，计算n！末尾0的个数&lt;/p&gt;
+  &lt;h4 id=&quot;problem-description--4&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Problem Description &lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;给出n，计算n！末尾0的个数&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Input &lt;br /&gt;
-输入包含多组数据
+  &lt;h4 id=&quot;input--4&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Input &lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;输入包含多组数据
 每组数据包含一个正整数n (&lt;script type=&quot;math/tex&quot;&gt;n≤10^9&lt;/script&gt; )&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Output &lt;br /&gt;
-对于每组数据，输出n！末尾0的个数&lt;/p&gt;
+  &lt;h4 id=&quot;output-4&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Output&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;对于每组数据，输出n！末尾0的个数&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Sample Input    &lt;br /&gt;
-3&lt;br /&gt;
+  &lt;h4 id=&quot;sample-input-4&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Sample Input&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;3&lt;br /&gt;
 5&lt;br /&gt;
 100 &lt;br /&gt;
 1024&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Sample Output &lt;br /&gt;
-0 &lt;br /&gt;
+  &lt;h4 id=&quot;sample-output-4&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Sample Output&lt;/font&gt;&lt;/h4&gt;
+  &lt;p&gt;0 &lt;br /&gt;
 1&lt;br /&gt;
 24 &lt;br /&gt;
 253&lt;/p&gt;
@@ -882,6 +782,10 @@ bitvec4的位模式中第2和3的位置为1，其余位置都为0。&lt;/p&gt;
 &lt;h2 id=&quot;题解-3&quot;&gt;&lt;em&gt;题解&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;来自《编程之美》（2.2不要被阶乘吓到）的思想
 从“哪些数相乘等于10”考虑，if&lt;script type=&quot;math/tex&quot;&gt;N!=K*10^M&lt;/script&gt;且&lt;script type=&quot;math/tex&quot;&gt;K%10!=0&lt;/script&gt;,then&lt;script type=&quot;math/tex&quot;&gt;N!&lt;/script&gt;末尾就有M个0。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;h4 id=&quot;code-1&quot;&gt;&lt;font color=&quot;#0099ff&quot;&gt;Code&lt;/font&gt;&lt;/h4&gt;
+&lt;/blockquote&gt;
 
 &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include&amp;lt;cstdio&amp;gt;
 #include&amp;lt;cstring&amp;gt;

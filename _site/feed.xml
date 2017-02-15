@@ -5,8 +5,8 @@
     <description>个人博客</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 15 Feb 2017 11:09:22 +0800</pubDate>
-    <lastBuildDate>Wed, 15 Feb 2017 11:09:22 +0800</lastBuildDate>
+    <pubDate>Wed, 15 Feb 2017 11:25:50 +0800</pubDate>
+    <lastBuildDate>Wed, 15 Feb 2017 11:25:50 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
     
       <item>
@@ -506,35 +506,6 @@ A single 0 indicate the end of the input.&lt;/p&gt;
       </item>
     
       <item>
-        <title>Hello 2017</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;“Yeah It’s on. ”&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;正文&quot;&gt;正文&lt;/h4&gt;
-
-&lt;p&gt;Jekyll 主题 fork 了 &lt;em&gt;Clean&lt;/em&gt; Blog，标签支持来自&lt;em&gt;Hux&lt;/em&gt; 支持，&lt;/p&gt;
-
-&lt;p&gt;今后会添加web slider #iframe，&lt;/p&gt;
-
-&lt;p&gt;Theme 的 CSS 是基于 Bootstrap 定制的，&lt;/p&gt;
-
-&lt;p&gt;中文字体的渲染，fork 了 &lt;a href=&quot;http://www.typeisbeautiful.com/&quot;&gt;Type is Beautiful&lt;/a&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;font&lt;/code&gt; CSS，调整了字号，适配了 Win 的渣渲染。&lt;/p&gt;
-
-&lt;p&gt;总算搭好个人博客了，今天是我开始记录的日子，好好对待，期待丰收的明年。&lt;/p&gt;
-
-&lt;pre&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;------2017年2月&lt;/pre&gt;
-</description>
-        <pubDate>Fri, 10 Feb 2017 03:13:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/02/10/hello-better/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/02/10/hello-better/</guid>
-        
-        <category>生活</category>
-        
-        
-      </item>
-    
-      <item>
         <title>菜鸟先飞——第五场</title>
         <description>&lt;h3 id=&quot;1problem-a--uppercase&quot;&gt;1.Problem A  Uppercase&lt;/h3&gt;
 &lt;p&gt;字符串水题&lt;/p&gt;
@@ -814,6 +785,36 @@ A single 0 indicate the end of the input.&lt;/p&gt;
         <pubDate>Sat, 04 Feb 2017 03:13:00 +0800</pubDate>
         <link>http://localhost:4000/2017/02/04/fifth-com/</link>
         <guid isPermaLink="true">http://localhost:4000/2017/02/04/fifth-com/</guid>
+        
+        <category>生活</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Hello 2017</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;“Yeah It’s on. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;正文&quot;&gt;正文&lt;/h4&gt;
+
+&lt;p&gt;Jekyll 主题 fork了 &lt;em&gt;Clean&lt;/em&gt; Blog，标签支持来自&lt;em&gt;Hux&lt;/em&gt; 支持，&lt;/p&gt;
+
+&lt;p&gt;今后会添加web slider #iframe，&lt;/p&gt;
+
+&lt;p&gt;Theme 的 CSS 是基于 Bootstrap 定制的，&lt;/p&gt;
+
+&lt;p&gt;中文字体的渲染，fork了&lt;a href=&quot;http://www.typeisbeautiful.com/&quot;&gt;Type is Beautiful&lt;/a&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;font&lt;/code&gt; CSS，调整了字号，适配了 Win 的渣渲染。&lt;/p&gt;
+
+&lt;p&gt;总算搭好个人博客了，今天是我开始记录的日子，好好对待，期待丰收的明年。&lt;/p&gt;
+
+&lt;p&gt;                                                             &lt;/p&gt;
+&lt;p&gt;——2017年2月&lt;/p&gt;
+</description>
+        <pubDate>Thu, 02 Feb 2017 03:13:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/02/02/hello-better/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/02/02/hello-better/</guid>
         
         <category>生活</category>
         

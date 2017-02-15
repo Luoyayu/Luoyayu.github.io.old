@@ -1,6 +1,6 @@
 # Site settings
 title:  MyBlog
-SEOTitle: 博客 | Luoyayu
+SEOTitle: Hello|Luoyayu
 header-img: img/home-bg.jpg
 email: gavinhty@gmail.com
 description: "个人博客"
@@ -13,11 +13,10 @@ future: true            #可以写未来的文章
 
 # SNS settings
 RSS: false
-weibo_username:    洛牙鱼
-zhihu_username:    Luoyayv
+zhihu_username:    Luyayv
 github_username:   Luoyayu
 twitter_username: tongyuHu
-facebook_username: Luoyayu
+facebook_username: tongyu.hu.1
 # linkedin_username:  firstname-lastname-idxxxx
 
 

@@ -69,7 +69,7 @@ yes
 using namespace std;
 const int maxn=105;
 int dir[4][2]= {1,0,0,1,-1,0,0,-1};
-int vis[15][4][maxn][maxn];//走过的步数,转向，x,y; 
+int vis[15][4][maxn][maxn];//走过的步数及转向次数,转向，x,y; 
 char map[maxn][maxn];
 int sx,sy,ey,ex,n,m,k;
 struct node
@@ -101,6 +101,7 @@ void bfs()
 	        return ;
     	}
         if(st.ts>k) continue;
+        
         for(int i=0; i<4; i++)
         {
         	nt=st;//moving 
@@ -108,11 +109,11 @@ void bfs()
             nt.y+=dir[i][1];
             if(check(nt)) continue ;//out ap or at *
             
-            if(st.x==sx&&st.y==sy) //可能转回来必要重置 
+            if(st.x==sx&&st.y==sy) //转回到起点必要重置 
                 nt.direct=i, nt.ts=0;
-            else
+            else//转到其他点的话 
             {
-                if(i!=st.direct) 
+                if(i!=st.direct) //不能重复转同一个方向 
 					 nt.ts++;
                 nt.direct=i;
             }
@@ -125,19 +126,19 @@ void bfs()
 }
 int main()
 {
-    int t,i,j;
+    int t;
     scanf("%d",&t);
     while(t--)
     {
 		memset(vis,0,sizeof(vis));
         scanf("%d %d",&n,&m);
-        for(i=1; i<=n; i++)
+        for(int i=1; i<=n; i++)//注意读图顺序先列后行 
     	{
     		getchar();
 			for(int j=1;j<=m;j++)
     			scanf("%c",&map[i][j]);
     	}
-        scanf("%d%d%d%d%d",&k,&sy,&sx,&ey,&ex);
+        scanf("%d%d%d%d%d",&k,&sy,&sx,&ey,&ex);//注意坐标 
 		if(sx==ex&&sy==ey)
 		{
 			printf("yes\n");
@@ -147,5 +148,6 @@ int main()
     }
     return 0;
 }
+
 
 ```

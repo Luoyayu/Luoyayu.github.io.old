@@ -1,0 +1,14 @@
+---
+layout: post
+anthor: luoyayu
+title: ""
+subtitle:  ""
+date: 2017-02-18 19:52:00
+ catalog: true
+ header-img: "img/post-bg-universe.jpg"
+ tags:
+ -阅读随笔
+
+ ---
+
+今天刚到学校，晚上继续读了《具体数学》

@@ -5,9 +5,33 @@
     <description>个人博客</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 15 Feb 2017 11:25:50 +0800</pubDate>
-    <lastBuildDate>Wed, 15 Feb 2017 11:25:50 +0800</lastBuildDate>
+    <pubDate>Tue, 21 Feb 2017 22:48:10 +0800</pubDate>
+    <lastBuildDate>Tue, 21 Feb 2017 22:48:10 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
+    
+      <item>
+        <title>Note</title>
+        <description>&lt;hr /&gt;
+&lt;p&gt;layout: post
+anthor: luoyayu
+title: “读书随笔”
+subtitle:  “——具体数学”
+date: 2017-02-18 19:52:00
+ catalog: true
+ header-img: “img/post-bg-universe.jpg”
+ tags:
+ -阅读随笔&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;今天刚到学校，晚上继续读了《具体数学》&lt;/p&gt;
+</description>
+        <pubDate>Sat, 18 Feb 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/02/18/note/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/02/18/note/</guid>
+        
+        
+      </item>
     
       <item>
         <title>HDU1242 Rescue</title>

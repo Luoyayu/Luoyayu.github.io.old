@@ -1,6 +1,6 @@
 ---
-layout: post 
-title: "HDU 1728 逃离迷宫"
+layout:   post 
+title:   "HDU 1728 逃离迷宫"
 subtitle:  "BFS"
 date:       2017-03-08 16:16:26
 author:    "Luoyayu"

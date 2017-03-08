@@ -4,7 +4,7 @@ title:   "HDU 1728 逃离迷宫"
 subtitle:  "BFS"
 date:       2017-03-08 16:16:26
 author:    "Luoyayu"
-header-img: "img/post-bg-universe.jpg"
+header-img: "img/post-bg-miui6.jpg"
 catalog: true
 tags:
     - ACM_搜索(bfs)

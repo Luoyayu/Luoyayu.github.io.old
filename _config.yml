@@ -48,7 +48,7 @@ kramdown:
 
 
 # Disqus settings
-#disqus_username: luoyayu
+disqus_username: luoyayu
 
 # Duoshuo settings //2017.03.22 duoshuo shutdown @_@bye
 #duoshuo_username: luoyayu01

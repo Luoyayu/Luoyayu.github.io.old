@@ -32,5 +32,28 @@ Now is better than never.
 Although never is often better than *right* now.  
 If the implementation is hard to explain, it's a bad idea.  
 If the implementation is easy to explain, it may be a good idea.  
-Namespaces are one honking great idea -- let's do more of those!  
+Namespaces are one honking great idea -- let's do more of those! 
+
+献上用python 写的可以删除烦人的.o/.exe文件
+
+``` python
+import os
+n = 0
+start = input("开始吧(按回车开始)")
+for root, dirs, files in os.walk('C:/Users/gavin/Desktop/CodeBack'):
+    for name in files:
+        if(name.endswith(".o") or name.endswith(".exe") ):
+            n += 1
+            print("Python帮你删除了", n, "个文件")
+            os.remove(os.path.join(root, name))
+
+if(n == 0):
+    print("没有该类型文件!")
+else:
+    print("删除完成!")
+os.system("pause")
+
+```
+
+
 

@@ -123,7 +123,6 @@ int main()
 
 ### Problem F <strong>Count the continent</strong>
 >####  <font color="#0099ff">Problem Description </font> 
-   
 给出一个二维矩阵，表示一张地图，0表示海洋,1表示陆地，若一块陆地的坐标为(r,c)，
 如果另一块陆地为 (r-1,c) 或 (r+1,c) 或 (r,c-1) 或 (r,c+1)，
 则我们认为这两块陆地相邻，所有相邻的陆地我们称之为一个大陆，求大陆的数量。
@@ -161,10 +160,12 @@ int main()
 >####  <font color="#0099ff">Problem Description </font>    
 已知a, n，求，求$$ \sum_{i=1}^{n}(a^{n-i}(a-1)^{i-1})mod 1000000007  $$
 
->####  <font color="#0099ff">Input </font>    
+>####  <font color="#0099ff">Input </font> 
+
 输入第一行是一个正整数T($$T≤1000$$)，表示有T组数据；每组数据包含两个正整数a, n($$a,n≤10^9$$ )。
 
->####  <font color="#0099ff">Output</font>     
+>####  <font color="#0099ff">Output</font>
+
 对于每组数据，输出上式的结果。
 
 >####  <font color="#0099ff">Sample Input</font>   

@@ -161,11 +161,9 @@ int main()
 已知a, n，求，求$$ \sum_{i=1}^{n}(a^{n-i}(a-1)^{i-1})mod 1000000007  $$
 
 >####  <font color="#0099ff">Input </font> 
-
 输入第一行是一个正整数T($$T≤1000$$)，表示有T组数据；每组数据包含两个正整数a, n($$a,n≤10^9$$ )。
 
 >####  <font color="#0099ff">Output</font>
-
 对于每组数据，输出上式的结果。
 
 >####  <font color="#0099ff">Sample Input</font>   
